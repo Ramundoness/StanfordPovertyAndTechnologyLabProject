@@ -9,6 +9,8 @@ import {
   TextInput
 } from "react-native";
 import Questionaire from "./components/questionaire";
+import FamilyMembers from "./components/familymembers";
+import AdditionalIncome from "./components/additionalincome";
 
 import { createBottomTabNavigator } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
@@ -115,7 +117,7 @@ class SplashScreen extends React.Component {
   }
 }
 
-class Survey extends React.Component {
+class PartOne extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -125,11 +127,21 @@ class Survey extends React.Component {
   }
 }
 
-class Results extends React.Component {
+class PartTwo extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View />
+        <FamilyMembers />
+      </View>
+    );
+  }
+}
+
+class PartThree extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <AdditionalIncome />
       </View>
     );
   }
@@ -139,8 +151,9 @@ export default App;
 
 const DashboardTabNavigator = createBottomTabNavigator(
   {
-    Survey,
-    Results
+    PartOne,
+    PartTwo,
+    PartThree
   },
   {
     navigationOptions: ({ navigation }) => {
