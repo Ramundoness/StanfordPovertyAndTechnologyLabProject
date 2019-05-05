@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, Image } from "react-native";
+import Questionaire from "./components/questionaire";
 
 import { createBottomTabNavigator } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
@@ -33,7 +34,17 @@ class WelcomeScreen extends React.Component {
   }
 }
 
-class Dashboard extends React.Component {
+class Survey extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Questionaire />
+      </View>
+    );
+  }
+}
+
+class Results extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -47,7 +58,8 @@ export default App;
 
 const DashboardTabNavigator = createBottomTabNavigator(
   {
-    Dashboard
+    Survey,
+    Results
   },
   {
     navigationOptions: ({ navigation }) => {
