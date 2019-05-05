@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  ImageBackground
+} from "react-native";
 import Questionaire from "./components/questionaire";
 
 import { createBottomTabNavigator } from "react-navigation";
@@ -17,16 +24,59 @@ class App extends React.Component {
 class WelcomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground
+        source={require("./assets/welcome-background.jpg")}
+        style={{
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Text
+          style={{
+            color: "#ffffff",
+            fontSize: 32,
+            textShadowColor: "#000000",
+            textShadowRadius: 10,
+            textshadowOpacity: 0.25,
+            textShadowOffset: { width: 0, height: 3 },
+            textAlign: "center",
+            marginBottom: 100,
+            margin: 35
+          }}
+        >
+          Stanford Center on Poverty and Inequality
+        </Text>
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {
-              this.props.navigation.navigate("Dashboard");
+              this.props.navigation.navigate("Splash");
               console.log("hello!");
             }}
             title="Login"
             color="#FFFFFF"
             accessibilityLabel="Login"
+          />
+        </View>
+      </ImageBackground>
+    );
+  }
+}
+
+class SplashScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => {
+              this.props.navigation.navigate("Dashboard");
+              console.log("hello again!");
+            }}
+            title="Begin"
+            color="#FFFFFF"
+            accessibilityLabel="Begin"
           />
         </View>
       </View>
@@ -86,6 +136,7 @@ const DashboardStackNavigator = createStackNavigator({
 
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: WelcomeScreen },
+  Splash: { screen: SplashScreen },
   Dashboard: { screen: DashboardStackNavigator }
 });
 
@@ -100,10 +151,14 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    backgroundColor: "#2E9298",
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "#2E9298",
+    backgroundColor: "#003366",
     borderRadius: 10,
     padding: 10,
     marginBottom: 50,
+    width: 200,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
