@@ -5,7 +5,8 @@ import {
   View,
   Button,
   Image,
-  ImageBackground
+  ImageBackground,
+  TextInput
 } from "react-native";
 import Questionaire from "./components/questionaire";
 
@@ -48,6 +49,36 @@ class WelcomeScreen extends React.Component {
         >
           Stanford Center on Poverty and Inequality
         </Text>
+        <TextInput
+          style={{
+            color: "#ffffff",
+            fontSize: 16,
+            marginBottom: 10,
+            margin: 35,
+            borderColor: "gray",
+            borderWidth: 1
+          }}
+          placeholder="email"
+          editable={true}
+          maxLength={20}
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={{
+            color: "#ffffff",
+            fontSize: 16,
+            marginBottom: 50,
+            margin: 35,
+            borderColor: "gray",
+            borderWidth: 1
+          }}
+          placeholder="password"
+          editable={true}
+          maxLength={20}
+          secureTextEntry={true}
+          keyboardType="default"
+        />
+
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {
