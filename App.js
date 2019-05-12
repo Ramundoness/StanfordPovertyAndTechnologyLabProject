@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, Button, Image, TextInput, Keyboard, Picker } from "react-native";
 import Questionaire from "./components/questionaire";
 
 import { createBottomTabNavigator } from "react-navigation";
@@ -22,7 +22,6 @@ class WelcomeScreen extends React.Component {
           <Button
             onPress={() => {
               this.props.navigation.navigate("Dashboard");
-              console.log("hello!");
             }}
             title="Login"
             color="#FFFFFF"
