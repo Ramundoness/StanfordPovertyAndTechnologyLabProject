@@ -10,11 +10,8 @@
     "expo": "^32.0.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
-<<<<<<< HEAD
     "react-native-datepicker": "^1.7.2",
-=======
     "react-native-video": "^4.4.1",
->>>>>>> 99e1a13a4c2b6676ae427f98c4528270bd9c0cd5
     "react-navigation": "^3.9.1"
   },
   "devDependencies": {
