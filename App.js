@@ -1,6 +1,20 @@
 import React from "react";
+<<<<<<< HEAD
 import { StyleSheet, Text, View, Button, Image, TextInput, Keyboard, Picker } from "react-native";
+=======
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  ImageBackground,
+  TextInput
+} from "react-native";
+>>>>>>> 99e1a13a4c2b6676ae427f98c4528270bd9c0cd5
 import Questionaire from "./components/questionaire";
+import FamilyMembers from "./components/familymembers";
+import AdditionalIncome from "./components/additionalincome";
 
 import { createBottomTabNavigator } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
@@ -17,15 +31,93 @@ class App extends React.Component {
 class WelcomeScreen extends React.Component {
   render() {
     return (
+      <ImageBackground
+        source={require("./assets/welcome-background.jpg")}
+        style={{
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <Text
+          style={{
+            color: "#ffffff",
+            fontSize: 32,
+            textShadowColor: "#000000",
+            textShadowRadius: 10,
+            textshadowOpacity: 0.25,
+            textShadowOffset: { width: 0, height: 3 },
+            textAlign: "center",
+            marginBottom: 100,
+            margin: 35
+          }}
+        >
+          Stanford Center on Poverty and Inequality
+        </Text>
+        <TextInput
+          style={{
+            color: "#ffffff",
+            fontSize: 16,
+            marginBottom: 10,
+            margin: 35,
+            borderColor: "gray",
+            borderWidth: 1
+          }}
+          placeholder="email"
+          editable={true}
+          maxLength={20}
+          keyboardType="email-address"
+        />
+        <TextInput
+          style={{
+            color: "#ffffff",
+            fontSize: 16,
+            marginBottom: 50,
+            margin: 35,
+            borderColor: "gray",
+            borderWidth: 1
+          }}
+          placeholder="password"
+          editable={true}
+          maxLength={20}
+          secureTextEntry={true}
+          keyboardType="default"
+        />
+
+        <View style={styles.buttonContainer}>
+          <Button
+            onPress={() => {
+<<<<<<< HEAD
+              this.props.navigation.navigate("Dashboard");
+=======
+              this.props.navigation.navigate("Splash");
+              console.log("hello!");
+>>>>>>> 99e1a13a4c2b6676ae427f98c4528270bd9c0cd5
+            }}
+            title="Login"
+            color="#FFFFFF"
+            accessibilityLabel="Login"
+          />
+        </View>
+      </ImageBackground>
+    );
+  }
+}
+
+class SplashScreen extends React.Component {
+  render() {
+    return (
       <View style={styles.container}>
         <View style={styles.buttonContainer}>
           <Button
             onPress={() => {
               this.props.navigation.navigate("Dashboard");
+              console.log("hello again!");
             }}
-            title="Login"
+            title="Begin"
             color="#FFFFFF"
-            accessibilityLabel="Login"
+            accessibilityLabel="Begin"
           />
         </View>
       </View>
@@ -33,7 +125,7 @@ class WelcomeScreen extends React.Component {
   }
 }
 
-class Survey extends React.Component {
+class PartOne extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -43,11 +135,21 @@ class Survey extends React.Component {
   }
 }
 
-class Results extends React.Component {
+class PartTwo extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View />
+        <FamilyMembers />
+      </View>
+    );
+  }
+}
+
+class PartThree extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <AdditionalIncome />
       </View>
     );
   }
@@ -57,8 +159,9 @@ export default App;
 
 const DashboardTabNavigator = createBottomTabNavigator(
   {
-    Survey,
-    Results
+    PartOne,
+    PartTwo,
+    PartThree
   },
   {
     navigationOptions: ({ navigation }) => {
@@ -85,6 +188,7 @@ const DashboardStackNavigator = createStackNavigator({
 
 const AppSwitchNavigator = createSwitchNavigator({
   Welcome: { screen: WelcomeScreen },
+  Splash: { screen: SplashScreen },
   Dashboard: { screen: DashboardStackNavigator }
 });
 
@@ -99,10 +203,14 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    backgroundColor: "#2E9298",
+    alignItems: "center",
+    justifyContent: "center",
+    //backgroundColor: "#2E9298",
+    backgroundColor: "#003366",
     borderRadius: 10,
     padding: 10,
     marginBottom: 50,
+    width: 200,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
