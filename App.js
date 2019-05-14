@@ -1,7 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import { StyleSheet, Text, View, Button, Image, TextInput, Keyboard, Picker } from "react-native";
-=======
 import {
   StyleSheet,
   Text,
@@ -9,9 +6,13 @@ import {
   Button,
   Image,
   ImageBackground,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from "react-native";
->>>>>>> 99e1a13a4c2b6676ae427f98c4528270bd9c0cd5
+
+import { Video } from "expo";
+import backgroundVideo from "./assets/final.mp4";
+
 import Questionaire from "./components/questionaire";
 import FamilyMembers from "./components/familymembers";
 import AdditionalIncome from "./components/additionalincome";
@@ -31,76 +32,66 @@ class App extends React.Component {
 class WelcomeScreen extends React.Component {
   render() {
     return (
-      <ImageBackground
-        source={require("./assets/welcome-background.jpg")}
-        style={{
-          width: "100%",
-          height: "100%",
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <Text
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Video
+          source={backgroundVideo}
+          resizeMode="cover"
+          shouldPlay
+          isLooping
+          isMuted={true}
+          style={{ width: 400, height: 700 }}
+        />
+        <TouchableOpacity
           style={{
-            color: "#ffffff",
-            fontSize: 32,
-            textShadowColor: "#000000",
-            textShadowRadius: 10,
-            textshadowOpacity: 0.25,
-            textShadowOffset: { width: 0, height: 3 },
-            textAlign: "center",
-            marginBottom: 100,
-            margin: 35
+            position: "absolute",
+            alignItems: "center",
+            justifyContent: "center"
           }}
         >
-          Stanford Center on Poverty and Inequality
-        </Text>
-        <TextInput
-          style={{
-            color: "#ffffff",
-            fontSize: 16,
-            marginBottom: 10,
-            margin: 35,
-            borderColor: "gray",
-            borderWidth: 1
-          }}
-          placeholder="email"
-          editable={true}
-          maxLength={20}
-          keyboardType="email-address"
-        />
-        <TextInput
-          style={{
-            color: "#ffffff",
-            fontSize: 16,
-            marginBottom: 50,
-            margin: 35,
-            borderColor: "gray",
-            borderWidth: 1
-          }}
-          placeholder="password"
-          editable={true}
-          maxLength={20}
-          secureTextEntry={true}
-          keyboardType="default"
-        />
-
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-<<<<<<< HEAD
-              this.props.navigation.navigate("Dashboard");
-=======
-              this.props.navigation.navigate("Splash");
-              console.log("hello!");
->>>>>>> 99e1a13a4c2b6676ae427f98c4528270bd9c0cd5
+          <Text
+            style={{
+              color: "#ffffff",
+              fontSize: 32,
+              textAlign: "center",
+              marginTop: 80,
+              marginBottom: 95,
+              margin: 35,
+              backgroundColor: "transparent",
+              textShadowColor: "#000",
+              textShadowOffset: { width: -1, height: 1 },
+              textShadowRadius: 10
             }}
-            title="Login"
-            color="#FFFFFF"
-            accessibilityLabel="Login"
+          >
+            Stanford Center on Poverty and Inequality
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="email"
+            editable={true}
+            maxLength={20}
+            keyboardType="email-address"
           />
-        </View>
-      </ImageBackground>
+          <TextInput
+            style={styles.input}
+            placeholder="password"
+            editable={true}
+            maxLength={20}
+            secureTextEntry={true}
+            keyboardType="default"
+          />
+          <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => {
+                this.props.navigation.navigate("Splash");
+                console.log("hello!");
+              }}
+              title="Login"
+              color="#FFFFFF"
+              accessibilityLabel="Login"
+            />
+          </View>
+        </TouchableOpacity>
+      </View>
     );
   }
 }
@@ -125,7 +116,7 @@ class SplashScreen extends React.Component {
   }
 }
 
-class PartOne extends React.Component {
+class Household extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -135,7 +126,7 @@ class PartOne extends React.Component {
   }
 }
 
-class PartTwo extends React.Component {
+class Family extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -145,7 +136,7 @@ class PartTwo extends React.Component {
   }
 }
 
-class PartThree extends React.Component {
+class Income extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -159,9 +150,9 @@ export default App;
 
 const DashboardTabNavigator = createBottomTabNavigator(
   {
-    PartOne,
-    PartTwo,
-    PartThree
+    Household,
+    Family,
+    Income
   },
   {
     navigationOptions: ({ navigation }) => {
@@ -205,12 +196,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: "center",
     justifyContent: "center",
-    //backgroundColor: "#2E9298",
     backgroundColor: "#003366",
     borderRadius: 10,
     padding: 10,
     marginBottom: 50,
-    width: 200,
+    width: 300,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
@@ -218,5 +208,14 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 10,
     shadowOpacity: 0.25
+  },
+
+  input: {
+    width: 300,
+    borderRadius: 10,
+    height: 50,
+    backgroundColor: "#FFF",
+    marginBottom: 15,
+    paddingLeft: 15
   }
 });
