@@ -76,7 +76,7 @@ class Questionaire extends Component {
           <TextInput
             style={styles.textInput}
             placeholder="Your name"
-            maxLength={10}
+            maxLength={5}
             keyboardType='numeric' // change keyboard input type
             onBlur={Keyboard.dismiss}
             onChangeText={this.handleNameChange}
@@ -104,7 +104,6 @@ class Questionaire extends Component {
     )
   }
 }
-
 
 export default Questionaire;
 const styles = StyleSheet.create({
