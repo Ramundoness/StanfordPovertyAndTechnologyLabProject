@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DatePicker from 'react-native-datepicker'
+import DatePicker from "react-native-datepicker";
 import {
   View,
   Image,
@@ -10,14 +10,14 @@ import {
   TextInput,
   Keyboard,
   Picker,
-  Button,
+  Button
 } from "react-native";
 
 class Questionaire extends Component {
   //state = {};
   constructor(props) {
-    super(props)
-    this.state = { date: "2016-05-15" }
+    super(props);
+    this.state = { date: "2016-05-15" };
   }
   render() {
     return (
@@ -29,7 +29,7 @@ class Questionaire extends Component {
           <Text>What is your date of birth?</Text>
           <DatePicker
             style={{ width: 200 }}
-            date= {new Date()} //{this.state.date}
+            date={new Date()} //{this.state.date}
             mode="date"
             placeholder="select date"
             format="YYYY-MM-DD"
@@ -39,7 +39,7 @@ class Questionaire extends Component {
             cancelBtnText="Cancel"
             customStyles={{
               dateIcon: {
-                position: 'absolute',
+                position: "absolute",
                 left: 0,
                 top: 4,
                 marginLeft: 0
@@ -49,7 +49,9 @@ class Questionaire extends Component {
               }
               // ... You can check the source to find the other keys.
             }}
-            onDateChange={(date) => { this.setState({ date: date }) }}
+            onDateChange={date => {
+              this.setState({ date: date });
+            }}
           />
           <Text>What is your marital status?</Text>
           <Picker
@@ -57,7 +59,8 @@ class Questionaire extends Component {
             style={{ height: 50, width: 150 }}
             onValueChange={(itemValue, itemIndex) =>
               this.setState({ language: itemValue })
-            }>
+            }
+          >
             <Picker.Item label="Married" value="married" />
             <Picker.Item label="Single" value="single" />
             <Picker.Item label="Divorced" value="divorced" />
@@ -68,7 +71,7 @@ class Questionaire extends Component {
             style={styles.textInput}
             placeholder="Your name"
             maxLength={2}
-            keyboardType='numeric' // change keyboard input type
+            keyboardType="numeric" // change keyboard input type
             onBlur={Keyboard.dismiss}
             onChangeText={this.handleNameChange}
           />
@@ -77,7 +80,7 @@ class Questionaire extends Component {
             style={styles.textInput}
             placeholder="Your name"
             maxLength={10}
-            keyboardType='numeric' // change keyboard input type
+            keyboardType="numeric" // change keyboard input type
             onBlur={Keyboard.dismiss}
             onChangeText={this.handleNameChange}
           />
@@ -86,7 +89,7 @@ class Questionaire extends Component {
             style={styles.textInput}
             placeholder="Your name"
             maxLength={10}
-            keyboardType='numeric' // change keyboard input type
+            keyboardType="numeric" // change keyboard input type
             onBlur={Keyboard.dismiss}
             onChangeText={this.handleNameChange}
           />
@@ -95,31 +98,30 @@ class Questionaire extends Component {
             style={styles.textInput}
             placeholder="Your name"
             maxLength={10}
-            keyboardType='numeric' // change keyboard input type
+            keyboardType="numeric" // change keyboard input type
             onBlur={Keyboard.dismiss}
             onChangeText={this.handleNameChange}
           />
         </View>
       </View>
-    )
+    );
   }
 }
-
 
 export default Questionaire;
 const styles = StyleSheet.create({
   container: {
     flex: 7,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    padding: 10,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    padding: 10
     //justifyContent: 'center',
   },
   title: {
     flex: 1,
-    backgroundColor: '#fff',
-    textAlign: 'center',
+    backgroundColor: "#fff",
+    textAlign: "center",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   }
 });
