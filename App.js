@@ -22,8 +22,14 @@ import { createSwitchNavigator } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
+import { Font } from 'expo';
 
 class App extends React.Component {
+  componentDidMount() {
+    Font.loadAsync({
+      'montserrat': require('./assets/fonts/montserrat.ttf'),
+    });
+  }
   render() {
     return <AppContainer />;
   }
