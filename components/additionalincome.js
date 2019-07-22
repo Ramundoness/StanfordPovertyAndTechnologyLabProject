@@ -144,15 +144,15 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginLeft: 0,
     paddingLeft: 10,
-    fontSize: 20,
-    fontFamily: "montserrat"
+    fontSize: 20
+    //fontFamily: "montserrat"
 
     //padding: 10,
     //justifyContent: 'center',
   },
   description: {
-    textAlign: "center",
-    fontFamily: "montserrat"
+    textAlign: "center"
+    //fontFamily: "montserrat"
   },
   title: {
     flex: 1,
@@ -160,14 +160,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 25,
     fontWeight: "bold",
-    paddingTop: 10,
-    fontFamily: "montserrat"
+    paddingTop: 10
+    //fontFamily: "montserrat"
   },
   question: {
     flex: 1,
     backgroundColor: "#fff",
     fontSize: 20,
-    fontFamily: "montserrat",
+    //fontFamily: "montserrat",
     paddingTop: 10,
     marginLeft: 2
   },

@@ -104,10 +104,10 @@ class Questionaire extends Component {
                 </Text>
               }
             >
-              <Image
+              {/* <Image
                 source={require("./img/tooltip_icon.png")}
                 style={{ width: 20, height: 20 }}
-              />
+              /> */}
             </Tooltip>
           </View>
 
@@ -141,10 +141,10 @@ class Questionaire extends Component {
                 </Text>
               }
             >
-              <Image
+              {/* <Image
                 source={require("./img/tooltip_icon.png")}
                 style={{ width: 20, height: 20 }}
-              />
+              /> */}
             </Tooltip>
           </View>
           <TextInput
@@ -176,10 +176,10 @@ class Questionaire extends Component {
                 </Text>
               }
             >
-              <Image
+              {/* <Image
                 source={require("./img/tooltip_icon.png")}
                 style={{ width: 20, height: 20 }}
-              />
+              /> */}
             </Tooltip>
           </View>
           <TextInput
@@ -213,10 +213,10 @@ class Questionaire extends Component {
                 </Text>
               }
             >
-              <Image
+              {/* <Image
                 source={require("./img/tooltip_icon.png")}
                 style={{ width: 20, height: 20 }}
-              />
+              /> */}
             </Tooltip>
           </View>
           <TextInput
@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginLeft: 0,
     paddingLeft: 10,
-    fontSize: 20,
-    fontFamily: "montserrat"
+    fontSize: 20
+    //fontFamily: "montserrat"
 
     //padding: 10,
     //justifyContent: 'center',
@@ -255,14 +255,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
-    paddingTop: 10,
-    fontFamily: "montserrat"
+    paddingTop: 10
+    //fontFamily: "montserrat"
   },
   question: {
     flex: 1,
     backgroundColor: "#fff",
     fontSize: 20,
-    fontFamily: "montserrat",
+    //fontFamily: "montserrat",
     paddingTop: 10,
     marginLeft: 10,
     alignItems: "flex-start"
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   },
   tooltip: {
     fontSize: 20,
-    fontFamily: "montserrat",
+    //fontFamily: "montserrat",
     fontWeight: "bold",
     flex: 1
   }
