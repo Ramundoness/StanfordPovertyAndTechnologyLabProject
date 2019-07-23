@@ -28,8 +28,8 @@ import { Font } from "expo";
 class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
-      'montserrat': require('./assets/fonts/montserrat.ttf'),
-      'montserrat_bold': require('./assets/fonts/montserrat_bold.ttf'),
+      montserrat: require("./assets/fonts/montserrat.ttf"),
+      montserrat_bold: require("./assets/fonts/montserrat_bold.ttf")
     });
   }
   render() {
@@ -40,16 +40,22 @@ class App extends React.Component {
 class WelcomeScreen extends React.Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
         <Video
           source={backgroundVideo}
           resizeMode="cover"
           shouldPlay
-          isLooping
+          isLooping={true}
           isMuted={true}
-          style={{ width: 400, height: 700 }}
+          style={{ width: 600, height: 1000 }}
         />
-        <TouchableOpacity
+        <View
           style={{
             position: "absolute",
             alignItems: "center",
@@ -57,17 +63,15 @@ class WelcomeScreen extends React.Component {
           }}
         >
           <HomeScreen />
-          <View style={styles.buttonContainer}>
-            <Button
-              onPress={() => {
-                this.props.navigation.navigate("Splash");
-              }}
-              title="Login"
-              color="#FFFFFF"
-              accessibilityLabel="Login"
-            />
-          </View>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              this.props.navigation.navigate("Help");
+            }}
+          >
+            <Text style={{ color: "white" }}>Login</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -77,76 +81,176 @@ class SplashScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-              this.props.navigation.navigate("ScreenOne");
-            }}
-            title="Begin"
-            color="#FFFFFF"
-            accessibilityLabel="Begin"
-          />
-        </View>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionOne");
+          }}
+        >
+          <Text style={{ color: "white" }}>Begin</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-class Household extends React.Component {
+class One extends React.Component {
   render() {
     return (
       <View style={styles.container}>
         <Questionaire />
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-              this.props.navigation.navigate("ScreenTwo");
-            }}
-            title="Next"
-            color="#FFFFFF"
-            accessibilityLabel="Next"
-          />
-        </View>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionTwo");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-class Family extends React.Component {
+class Two extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <FamilyMembers />
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-              this.props.navigation.navigate("ScreenThree");
-            }}
-            title="Next"
-            color="#FFFFFF"
-            accessibilityLabel="Next"
-          />
-        </View>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION TWO</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionThree");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-class Income extends React.Component {
+class Three extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AdditionalIncome />
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={() => {
-              this.props.navigation.navigate("Welcome");
-            }}
-            title="Finish"
-            color="#FFFFFF"
-            accessibilityLabel="Finish"
-          />
-        </View>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION THREE</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionFour");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Four extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION FOUR</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionFive");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Five extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION FIVE</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionSix");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Six extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION SIX</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionSeven");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Seven extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION SEVEN</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("QuestionEight");
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Eight extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION EIGHT</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("Results");
+          }}
+        >
+          <Text style={{ color: "white" }}>Finish</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+class Result extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>REPLACE ME WITH A COMPONENT FOR THE RESULT</Text>
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => {
+            this.props.navigation.navigate("Welcome");
+          }}
+        >
+          <Text style={{ color: "white" }}>Return</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -154,42 +258,39 @@ class Income extends React.Component {
 
 export default App;
 
-// const DashboardTabNavigator = createBottomTabNavigator(
-//   {
-//     Household,
-//     Family,
-//     Income
-//   },
-//   {
-//     navigationOptions: ({ navigation }) => {
-//       const { routeName } = navigation.state.routes[navigation.state.index];
-//       return {
-//         headerTitle: routeName,
-//         showIcon: true,
-//         headerTitleContainerStyle: {
-//           backgroundColor: "#333333",
-//           margin: -1,
-//           padding: 0
-//         },
-//         headerTitleStyle: {
-//           color: "white"
-//         }
-//       };
-//     }
-//   }
-// );
-
-// const DashboardStackNavigator = createStackNavigator({
-//   DashboardTabNavigator: DashboardTabNavigator
-// });
-
 const AppSwitchNavigator = createStackNavigator(
   {
-    Welcome: WelcomeScreen,
-    Splash: SplashScreen,
-    ScreenOne: Household,
-    ScreenTwo: Family,
-    ScreenThree: Income
+    Welcome: {
+      screen: WelcomeScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Help: {
+      screen: SplashScreen,
+      navigationOptions: {
+        header: null
+      }
+    },
+    QuestionOne: {
+      screen: One,
+      navigationOptions: {
+        header: null
+      }
+    },
+    QuestionTwo: Two,
+    QuestionThree: Three,
+    QuestionFour: Four,
+    QuestionFive: Five,
+    QuestionSix: Six,
+    QuestionSeven: Seven,
+    QuestionEight: Eight,
+    Results: {
+      screen: Result,
+      navigationOptions: {
+        header: null
+      }
+    }
   },
   {
     initialRouteName: "Welcome"
@@ -214,6 +315,27 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 50,
     width: 300,
+    height: 50,
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 10,
+    shadowOpacity: 0.25
+  },
+
+  buttonContainerTwo: {
+    position: "absolute",
+    bottom: 0.1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#003366",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 50,
+    width: 300,
+    height: 50,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
