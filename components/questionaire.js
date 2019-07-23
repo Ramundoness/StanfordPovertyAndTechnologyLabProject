@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DatePicker from "react-native-datepicker";
+import DatePicker from 'react-native-datepicker'
 //import { styles } from './component/styles'
 import {
   View,
@@ -12,274 +12,159 @@ import {
   Keyboard,
   Picker,
   Button,
-  ScrollView
+  ScrollView,
+  ListView,
+  Alert,
 } from "react-native";
-import { KeyboardAvoidingView } from "react-native";
-import { Tooltip } from "react-native-elements";
-import { Font } from "expo";
+import { CheckBox } from 'react-native-elements';
+import { KeyboardAvoidingView } from 'react-native';
+import { Tooltip } from 'react-native-elements';
+import { Font } from 'expo';
 
 class Questionaire extends Component {
-  //state = {};
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {
+      selectedMedicaid: false,
+      selectedSSI: false,
+      selectedSNAP: false,
+      selectedReduced: false,
+      selectedTANF: false,
+      selectedWIC: false,
+      selectedYes: false,
+      selectedNo: false
+    }
   }
+
+  medicaidPressed() {
+    this.setState({
+      selectedMedicaid: !this.state.selectedMedicaid
+    })
+  }
+
+  ssiPressed() {
+    this.setState({
+      selectedSSI: !this.state.selectedSSI
+    })
+  }
+
+  snapPressed() {
+    this.setState({
+      selectedSNAP: !this.state.selectedSNAP
+    })
+  }
+
+  reducedPressed() {
+    this.setState({
+      selectedReduced: !this.state.selectedReduced
+    })
+  }
+
+  tanfPressed() {
+    this.setState({
+      selectedTANF: !this.state.selectedTANF
+    })
+  }
+
+  wicPressed() {
+    this.setState({
+      selectedWIC: !this.state.selectedWIC
+    })
+  }
+
+  yesPressed() {
+    this.setState({
+      selectedYes: !this.state.selectedYes,
+      selectedNo: false
+    })
+  }
+
+  noPressed() {
+    this.setState({
+      selectedNo: !this.state.selectedNo,
+      selectedYes: false
+    })
+  }
+
+
   render() {
     return (
-      // <ScrollView contentContainerStyle={styles.container}>
-      <View
-        style={{
-          flexGrow: 1,
-          justifyContent: "flex-start",
-          backgroundColor: "red"
-        }}
-      >
-        <ScrollView style={{ flexGrow: 1 }}>
-          {/* <Text style={styles.title}>
-          <Text>Head of Household</Text>
-        </Text> */}
-          <Text style={styles.question}>
-            <Text>What is your date of birth?</Text>
-          </Text>
-          <DatePicker
-            style={{ width: 200 }}
-            date={this.state.date} //{new Date()} //{this.state.date}
-            mode="date"
-            placeholder="select date"
-            format="YYYY-MM-DD"
-            minDate="1900-01-01"
-            maxDate={new Date()}
-            confirmBtnText="Confirm"
-            cancelBtnText="Cancel"
-            customStyles={{
-              dateIcon: {
-                position: "absolute",
-                left: 0,
-                top: 4,
-                marginLeft: 0
-              },
-              dateInput: {
-                marginLeft: 36
-              }
-            }}
-            onDateChange={date => {
-              this.setState({ date: date });
-            }}
-          />
-          <Text style={styles.question}>
-            <Text>What is your marital status?</Text>
-          </Text>
-          <Picker
-            selectedValue={this.state.language}
-            style={{ height: 50, width: 150 }}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ language: itemValue })
-            }
-          >
-            <Picker.Item label="Married" value="married" />
-            <Picker.Item label="Single" value="single" />
-            <Picker.Item label="Divorced" value="divorced" />
-            <Picker.Item label="Separated" value="separated" />
-          </Picker>
-          <View
-            style={{
-              flexGrow: 1,
-              flexDirection: "row",
-              backgroundColor: "blue"
-            }}
-          >
-            <Text style={styles.question}>
-              <Text>How many dependents do you have?</Text>
-            </Text>
-            <Tooltip
-              width={400}
-              popover={
-                <Text style={styles.tooltip}>
-                  Dependents are defined as-{"\n"}- Any child of yours,
-                  including a biological or adopted child, who receives more
-                  than half of their support from you (the child does not have
-                  to live with you).{"\n"}- Also, any person other than your
-                  spouse, who lives with you and receives more than half of his
-                  or her support from you and will continue to in the future.
-                </Text>
-              }
-            >
-              {/* <Image
-                source={require("./img/tooltip_icon.png")}
-                style={{ width: 20, height: 20 }}
-              /> */}
-            </Tooltip>
-          </View>
+      <View style={styles.container}>
+        <Text style={styles.title} >Let's talk about right now</Text>
+        {/* empty view for border line */}
+        <View style={styles.border}></View>
 
-          <TextInput
-            style={styles.textInput}
-            placeholder="# of dependents"
-            maxLength={2}
-            keyboardType="numeric" // change keyboard input type
-            onBlur={Keyboard.dismiss}
-            onChangeText={this.handleNameChange}
-          />
-          <View
-            style={{
-              flexGrow: 1,
-              flexDirection: "row",
-              backgroundColor: "green"
-            }}
-          >
-            <Text style={styles.question}>
-              <Text>Please enter your monthly income:</Text>
-            </Text>
-            <Tooltip
-              width={400}
-              popover={
-                <Text style={styles.tooltip}>
-                  Explain how much you usually earn each month. Include only
-                  wages, salary, tips, and commission before taxes are taken
-                  out. If you are self-employed (for instance, if you are a
-                  babysitter or own your own business) include your earnings
-                  after expenses.
-                </Text>
-              }
-            >
-              {/* <Image
-                source={require("./img/tooltip_icon.png")}
-                style={{ width: 20, height: 20 }}
-              /> */}
-            </Tooltip>
-          </View>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Monthly income"
-            maxLength={5}
-            keyboardType="numeric" // change keyboard input type
-            onBlur={Keyboard.dismiss}
-            onChangeText={this.handleNameChange}
-          />
-          <View
-            style={{
-              flexGrow: 1,
-              flexDirection: "row",
-              backgroundColor: "yellow"
-            }}
-          >
-            <Text style={styles.question}>
-              <Text>Please enter your savings:</Text>
-            </Text>
-            <Tooltip
-              width={400}
-              popover={
-                <Text style={styles.tooltip}>
-                  {" "}
-                  Enter the amount of money you have saved in a bank account or
-                  at home. Examples of savings include money in checking
-                  accounts, savings accounts, bonds, or other investments.
-                </Text>
-              }
-            >
-              {/* <Image
-                source={require("./img/tooltip_icon.png")}
-                style={{ width: 20, height: 20 }}
-              /> */}
-            </Tooltip>
-          </View>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Savings"
-            maxLength={10}
-            keyboardType="numeric" // change keyboard input type
-            onBlur={Keyboard.dismiss}
-            onChangeText={this.handleNameChange}
-          />
-          <View
-            style={{
-              flexGrow: 1,
-              flexDirection: "row",
-              backgroundColor: "orange"
-            }}
-          >
-            <Text style={styles.question}>
-              <Text>How much do you usually pay for rent each month?</Text>
-            </Text>
-            <Tooltip
-              width={400}
-              popover={
-                <Text style={styles.tooltip}>
-                  {" "}
-                  Explain how much you usually earn each month. Include only
-                  wages, salary, tips, and commission before taxes are taken
-                  out. If you are self-employed (for instance, if you are a
-                  babysitter or own your own business) include your earnings
-                  after expenses.
-                </Text>
-              }
-            >
-              {/* <Image
-                source={require("./img/tooltip_icon.png")}
-                style={{ width: 20, height: 20 }}
-              /> */}
-            </Tooltip>
-          </View>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Rent"
-            maxLength={10}
-            keyboardType="numeric" // change keyboard input type
-            onBlur={Keyboard.dismiss}
-            onChangeText={this.handleNameChange}
-          />
-        </ScrollView>
+        {/* Question #1 */}
+        <Text style={styles.question}>1. Does anyone in your household currently receive any of the following benefits?</Text>
+        <Text style={this.state.selectedMedicaid ? styles.selectedOption : styles.unselectedOption} onPress={this.medicaidPressed.bind(this)}>a. Medicaid</Text>
+        <Text style={this.state.selectedSSI ? styles.selectedOption : styles.unselectedOption} onPress={this.ssiPressed.bind(this)}>b. SSI</Text>
+        <Text style={this.state.selectedSNAP ? styles.selectedOption : styles.unselectedOption} onPress={this.snapPressed.bind(this)}>c. SNAP</Text>
+        <Text style={this.state.selectedReduced ? styles.selectedOption : styles.unselectedOption} onPress={this.reducedPressed.bind(this)}>d. Reduced or free lunch</Text>
+        <Text style={this.state.selectedTANF ? styles.selectedOption : styles.unselectedOption} onPress={this.tanfPressed.bind(this)}>e. TANF (cash assistance)</Text>
+        <Text style={this.state.selectedWIC ? styles.selectedOption : styles.unselectedOption} onPress={this.wicPressed.bind(this)}>f. WIC</Text>
+
+        {/* Question #2 */}
+        <Text style={styles.question}>2. Do you think your parents make more than $26,000 per year?</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+          <Text style={this.state.selectedYes ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.yesPressed.bind(this)}>Yes</Text>
+          <Text style={this.state.selectedNo ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.noPressed.bind(this)}>  No</Text>
+        </View>
       </View>
-    );
+    )
   }
 }
-
-// put these in a separate styles page later using ./styles
 export default Questionaire;
 const styles = StyleSheet.create({
   container: {
-    flex: 7,
-    backgroundColor: "#fff",
-    //alignItems: 'left',
-    alignItems: "flex-start",
-    marginLeft: 0,
-    paddingLeft: 10,
-    fontSize: 20
-    //fontFamily: "montserrat"
-
-    //padding: 10,
-    //justifyContent: 'center',
+    flexGrow: 1,
+    //justifyContent: 'flex-start'
   },
   title: {
-    flex: 1,
     backgroundColor: "#fff",
     textAlign: "center",
     fontSize: 30,
-    fontWeight: "bold",
-    paddingTop: 10
-    //fontFamily: "montserrat"
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    paddingTop: 10,
+    fontFamily: 'montserrat',
   },
   question: {
-    flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     fontSize: 20,
-    //fontFamily: "montserrat",
-    paddingTop: 10,
+    fontFamily: 'montserrat',
     marginLeft: 10,
-    alignItems: "flex-start"
+    marginBottom: 15,
+    marginTop: 10,
+    color: 'blue'
   },
-  textInput: {
-    borderWidth: 2,
-    borderRadius: 20,
-    borderColor: "black",
-    width: "95%",
-    paddingLeft: 10,
-    marginLeft: 5,
-    marginTop: 10
+  unselectedOption: {
+    marginLeft: 20,
+    fontFamily: 'montserrat',
+    fontSize: 18,
+    marginBottom: 5
   },
-  tooltip: {
+  selectedOption: {
+    fontFamily: 'montserrat_bold',
+    marginLeft: 20,
     fontSize: 20,
-    //fontFamily: "montserrat",
-    fontWeight: "bold",
-    flex: 1
+    marginBottom: 5,
+  },
+  selectedBinaryOption: {
+    fontFamily: 'montserrat_bold',
+    fontSize: 20,
+    marginBottom: 5,
+    marginRight: 5
+  },
+  unselectedBinaryOption: {
+    fontFamily: 'montserrat',
+    fontSize: 18,
+    marginBottom: 5,
+    
+  },
+  border: {
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    marginTop: 10,
+    marginBottom: 10
   }
-});
+})
