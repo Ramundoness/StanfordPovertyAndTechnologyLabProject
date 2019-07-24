@@ -116,10 +116,29 @@ class One extends React.Component {
 }
 
 class Two extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      response: "-----"
+    };
+  }
+
+  handler(result) {
+    this.setState(
+      {
+        response: result
+      },
+      () => {
+        console.log(this.state.response);
+      }
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Question_2 />
+        <Question_2 action={this.handler} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {

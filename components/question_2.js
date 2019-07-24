@@ -16,6 +16,7 @@ class Question_2 extends Component {
       selectedYes: !this.state.selected_yes,
       selectedNo: false
     });
+    this.props.action;
   }
 
   noPressed() {
@@ -23,6 +24,7 @@ class Question_2 extends Component {
       selectedNo: !this.state.selected_no,
       selectedYes: false
     });
+    this.props.action;
   }
 
   render() {
@@ -39,7 +41,8 @@ class Question_2 extends Component {
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
-            onPress={this.yesPressed.bind(this)}
+            //onPress={this.yesPressed.bind(this)}
+            onPress={this.props.action.bind(this, "yes")}
           >
             Yes
           </Text>
@@ -49,7 +52,8 @@ class Question_2 extends Component {
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
-            onPress={this.noPressed.bind(this)}
+            //onPress={this.noPressed.bind(this)}
+            onPress={this.props.action.bind(this, "no")}
           >
             {" "}
             No
