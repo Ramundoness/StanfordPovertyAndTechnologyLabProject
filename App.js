@@ -13,6 +13,8 @@ import {
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
 
+import { styles } from "./stylesheets/app-styles";
+
 import Question_1 from "./components/question_1";
 import Question_2 from "./components/question_2";
 import Question_3 from "./components/question_3";
@@ -29,8 +31,8 @@ import { Font } from "expo";
 class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
-      'montserrat': require("./assets/fonts/montserrat.ttf"),
-      'montserrat_bold': require("./assets/fonts/montserrat_bold.ttf")
+      montserrat: require("./assets/fonts/montserrat.ttf"),
+      montserrat_bold: require("./assets/fonts/montserrat_bold.ttf")
     });
   }
   render() {
@@ -299,59 +301,3 @@ const AppSwitchNavigator = createStackNavigator(
 );
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-
-  buttonContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#003366",
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 50,
-    width: 300,
-    height: 50,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.25
-  },
-
-  buttonContainerTwo: {
-    position: "absolute",
-    bottom: 0.1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#003366",
-    borderRadius: 10,
-    padding: 10,
-    marginBottom: 50,
-    width: 300,
-    height: 50,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.25
-  },
-
-  input: {
-    width: 300,
-    borderRadius: 10,
-    height: 50,
-    backgroundColor: "#FFF",
-    marginBottom: 15,
-    paddingLeft: 15
-  }
-});
