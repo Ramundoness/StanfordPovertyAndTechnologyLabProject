@@ -13,9 +13,10 @@ import {
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
 
-import Questionaire from "./components/questionaire";
-import FamilyMembers from "./components/familymembers";
-import AdditionalIncome from "./components/additionalincome";
+import Question_1 from "./components/question_1";
+import Question_2 from "./components/question_2";
+import Question_3 from "./components/question_3";
+import Question_4 from "./components/question_4";
 import HomeScreen from "./components/homescreen";
 
 import { createBottomTabNavigator } from "react-navigation";
@@ -28,8 +29,8 @@ import { Font } from "expo";
 class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
-      montserrat: require("./assets/fonts/montserrat.ttf"),
-      montserrat_bold: require("./assets/fonts/montserrat_bold.ttf")
+      'montserrat': require("./assets/fonts/montserrat.ttf"),
+      'montserrat_bold': require("./assets/fonts/montserrat_bold.ttf")
     });
   }
   render() {
@@ -98,7 +99,7 @@ class One extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Questionaire />
+        <Question_1 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -116,7 +117,7 @@ class Two extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION TWO</Text>
+        <Question_2 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -134,7 +135,7 @@ class Three extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION THREE</Text>
+        <Question_3 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -152,7 +153,7 @@ class Four extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION FOUR</Text>
+        <Question_4 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
