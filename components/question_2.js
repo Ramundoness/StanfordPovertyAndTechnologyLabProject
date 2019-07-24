@@ -42,7 +42,7 @@ class Question_2 extends Component {
                 : styles.unselectedBinaryOption
             }
             //onPress={this.yesPressed.bind(this)}
-            onPress={this.props.action.bind(this, "yes")}
+            onPress={this.props.action.bind(this, true)}
           >
             Yes
           </Text>
@@ -53,9 +53,9 @@ class Question_2 extends Component {
                 : styles.unselectedBinaryOption
             }
             //onPress={this.noPressed.bind(this)}
-            onPress={this.props.action.bind(this, "no")}
+            onPress={this.props.action.bind(this, false)}
           >
-            {" "} 
+            {" "}
             No
           </Text>
         </View>

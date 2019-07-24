@@ -46,7 +46,8 @@ class Question_3 extends Component {
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
-            onPress={this.yesPressed.bind(this)}
+            //onPress={this.yesPressed.bind(this)}
+            onPress={this.props.action.bind(this, true)}
           >
             Yes
           </Text>
@@ -56,7 +57,8 @@ class Question_3 extends Component {
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
-            onPress={this.noPressed.bind(this)}
+            //onPress={this.noPressed.bind(this)}
+            onPress={this.props.action.bind(this, false)}
           >
             {" "}
             No

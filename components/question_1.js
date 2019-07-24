@@ -70,7 +70,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.medicaidPressed.bind(this)}
+          //onPress={this.medicaidPressed.bind(this)}
+          onPress={this.props.action.bind(this, 1)}
         >
           a. Medicaid
         </Text>
@@ -80,7 +81,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.ssiPressed.bind(this)}
+          //onPress={this.ssiPressed.bind(this)}
+          onPress={this.props.action.bind(this, 2)}
         >
           b. SSI
         </Text>
@@ -90,7 +92,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.snapPressed.bind(this)}
+          //onPress={this.snapPressed.bind(this)}
+          onPress={this.props.action.bind(this, 3)}
         >
           c. SNAP
         </Text>
@@ -100,7 +103,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.reducedPressed.bind(this)}
+          //onPress={this.reducedPressed.bind(this)}
+          onPress={this.props.action.bind(this, 4)}
         >
           d. Reduced or free lunch
         </Text>
@@ -110,7 +114,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.tanfPressed.bind(this)}
+          //onPress={this.tanfPressed.bind(this)}
+          onPress={this.props.action.bind(this, 5)}
         >
           e. TANF (cash assistance)
         </Text>
@@ -120,7 +125,8 @@ class Question_1 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.wicPressed.bind(this)}
+          //onPress={this.wicPressed.bind(this)}
+          onPress={this.props.action.bind(this, 6)}
         >
           f. WIC
         </Text>

@@ -58,7 +58,8 @@ class Question_4 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.workStudyPressed.bind(this)}
+          //onPress={this.workStudyPressed.bind(this)}
+          onPress={this.props.action.bind(this, "a")}
         >
           a. I plan to participate in work study
         </Text>
@@ -68,7 +69,8 @@ class Question_4 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.work20Pressed.bind(this)}
+          //onPress={this.work20Pressed.bind(this)}
+          onPress={this.props.action.bind(this, "b")}
         >
           b. I plan to work at least 20 hours per week
         </Text>
@@ -78,7 +80,8 @@ class Question_4 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.vocationalPressed.bind(this)}
+          //onPress={this.vocationalPressed.bind(this)}
+          onPress={this.props.action.bind(this, "c")}
         >
           c. I plan to be enrolled in a vocational training program
         </Text>
@@ -88,7 +91,8 @@ class Question_4 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.childPressed.bind(this)}
+          //onPress={this.childPressed.bind(this)}
+          onPress={this.props.action.bind(this, "d")}
         >
           I plan to support a child under 6 years old while I am in college
         </Text>
@@ -98,7 +102,8 @@ class Question_4 extends Component {
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          onPress={this.nonePressed.bind(this)}
+          //onPress={this.nonePressed.bind(this)}
+          onPress={this.props.action.bind(this, "e")}
         >
           e. None apply
         </Text>

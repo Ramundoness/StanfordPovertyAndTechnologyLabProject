@@ -101,13 +101,59 @@ class SplashScreen extends React.Component {
 }
 
 class One extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      response_one_medicaid: false,
+      response_one_ssi: false,
+      response_one_snap: false,
+      response_one_reduced: false,
+      response_one_tnaf: false,
+      response_one_wic: false
+    };
+  }
+
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
+          response_one_medicaid: !this.state.response_one_medicaid
+        });
+        break;
+      case 2:
+        this.setState({ response_one_ssi: !this.state.response_one_ssi });
+        break;
+      case 3:
+        this.setState({ response_one_snap: !this.state.response_one_snap });
+        break;
+      case 4:
+        this.setState({
+          response_one_reduced: !this.state.response_one_reduced
+        });
+        break;
+      case 5:
+        this.setState({ response_one_tnaf: !this.state.response_one_tnaf });
+        break;
+      case 6:
+        this.setState({ response_one_wic: !this.state.response_one_wic });
+        break;
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Question_1 />
+        <Question_1 action={this.handler} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
+            // console.log(this.state.response_one_medicaid);
+            // console.log(this.state.response_one_ssi);
+            // console.log(this.state.response_one_snap);
+            // console.log(this.state.response_one_reduced);
+            // console.log(this.state.response_one_tnaf);
+            // console.log(this.state.response_one_wic);
             this.props.navigation.navigate("QuestionTwo");
           }}
         >
@@ -123,19 +169,14 @@ class Two extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response: "-----"
+      response_two: false
     };
   }
 
   handler(result) {
-    this.setState(
-      {
-        response: result
-      },
-      () => {
-        console.log(this.state.response);
-      }
-    );
+    this.setState({
+      response_two: result
+    });
   }
 
   render() {
@@ -145,6 +186,7 @@ class Two extends React.Component {
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
+            console.log(this.state.response_two);
             this.props.navigation.navigate("QuestionThree");
           }}
         >
@@ -156,14 +198,32 @@ class Two extends React.Component {
 }
 
 class Three extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      response_three: false
+    };
+  }
+
+  handler(result) {
+    this.setState({
+      response_three: result
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Question_3 />
+        <Question_3 action={this.handler} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
-            this.props.navigation.navigate("QuestionFour");
+            if (this.state.response_three) {
+              this.props.navigation.navigate("QuestionFour");
+            } else {
+              this.props.navigation.navigate("Results");
+            }
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -174,14 +234,32 @@ class Three extends React.Component {
 }
 
 class Four extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      response_four: ""
+    };
+  }
+
+  handler(result) {
+    this.setState({
+      response_four: result
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Question_4 />
+        <Question_4 action={this.handler} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
-            this.props.navigation.navigate("QuestionFive");
+            if (this.state.response_four === "e") {
+              this.props.navigation.navigate("Results");
+            } else {
+              this.props.navigation.navigate("QuestionFive");
+            }
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -213,7 +291,7 @@ class Six extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-            {/*<Question_6 />*/}
+        {/*<Question_6 />*/}
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -231,7 +309,7 @@ class Seven extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-            {/*<Question_7 />*/}
+        {/*<Question_7 />*/}
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
