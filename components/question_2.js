@@ -55,7 +55,7 @@ class Question_2 extends Component {
             //onPress={this.noPressed.bind(this)}
             onPress={this.props.action.bind(this, "no")}
           >
-            {" "}
+            {" "} 
             No
           </Text>
         </View>
