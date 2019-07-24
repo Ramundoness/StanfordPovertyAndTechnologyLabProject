@@ -19,6 +19,9 @@ import Question_1 from "./components/question_1";
 import Question_2 from "./components/question_2";
 import Question_3 from "./components/question_3";
 import Question_4 from "./components/question_4";
+import Question_5 from "./components/question_5";
+import Question_8 from "./components/question_8";
+
 import HomeScreen from "./components/homescreen";
 
 import { createBottomTabNavigator } from "react-navigation";
@@ -192,7 +195,7 @@ class Five extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION FIVE</Text>
+        <Question_5 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -210,7 +213,7 @@ class Six extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION SIX</Text>
+            {/*<Question_6 />*/}
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -228,7 +231,7 @@ class Seven extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION SEVEN</Text>
+            {/*<Question_7 />*/}
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -246,7 +249,7 @@ class Eight extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR QUESTION EIGHT</Text>
+        <Question_8 />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
