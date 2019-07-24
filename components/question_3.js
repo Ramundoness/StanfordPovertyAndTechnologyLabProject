@@ -1,0 +1,46 @@
+import React, { Component } from "react";
+import { View, Text } from "react-native";
+import { styles } from './styles'
+
+class Question_3 extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            selected_yes: false,
+            selected_no: false
+        }
+    }
+
+    yesPressed() {
+        this.setState({
+            selectedYes: !this.state.selected_yes,
+            selectedNo: false
+        })
+    }
+
+    noPressed() {
+        this.setState({
+            selectedNo: !this.state.selected_no,
+            selectedYes: false
+        })
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title} >Let's jump ahead to your first year in college</Text>
+                
+                {/* empty view for border line */}
+                <View style={styles.border}></View>
+
+                {/* Question #3 */}
+                <Text style={styles.question}>3. Do you plan to attend college at least half-time?</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                    <Text style={this.state.selected_yes ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.yesPressed.bind(this)}>Yes</Text>
+                    <Text style={this.state.selected_no ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.noPressed.bind(this)}>  No</Text>
+                </View>
+            </View>
+        )
+    }
+}
+export default Question_3;
