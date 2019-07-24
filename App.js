@@ -50,7 +50,7 @@ class WelcomeScreen extends React.Component {
         <Video
           source={backgroundVideo}
           resizeMode="cover"
-          shouldPlay
+          shouldPlay={true}
           isLooping={true}
           isMuted={true}
           style={{ width: 600, height: 1000 }}
