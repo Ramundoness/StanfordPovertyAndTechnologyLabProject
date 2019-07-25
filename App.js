@@ -192,32 +192,61 @@ class Two extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_two: false,
+      response_two_yes: false,
+      response_two_no: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
   handler(result) {
-    this.setState({
-      response_two: result
-    });
+    if (result) {
+      this.setState(
+        {
+          response_two_yes: true,
+          response_two_no: false
+        },
+        () => {
+          console.log(this.state.response_two_yes);
+          console.log(this.state.response_two_no);
+        }
+      );
+    } else {
+      this.setState(
+        {
+          response_two_yes: false,
+          response_two_no: true
+        },
+        () => {
+          console.log(this.state.response_two_yes);
+          console.log(this.state.response_two_no);
+        }
+      );
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Question_2 action={this.handler} />
+        <Question_2
+          action={this.handler}
+          yes={this.state.response_two_yes}
+          no={this.state.response_two_no}
+        />
 
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_two",
-              this.state.response_two
+              "response_two_yes",
+              this.state.response_two_yes
+            );
+            this.state.componentMap.set(
+              "response_two_no",
+              this.state.response_two_no
             );
             if (
               this.state.componentMap.size != 1 &&
-              this.state.componentMap.get("response_two")
+              this.state.componentMap.get("response_two_yes")
             ) {
               //MESSAGE FOR PELL ELIGIBILITY
               console.log(this.state.componentMap.size);

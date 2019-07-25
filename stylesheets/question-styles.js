@@ -60,6 +60,46 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginTop: 10,
     marginBottom: 10
+  },
+  unselectedButton: {
+    //position: "absolute",
+    // bottom: 0.1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#bbbbbb",
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
+    //width: 200,
+    flex: 0.4,
+    height: 50,
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 10,
+    shadowOpacity: 0.25
+  },
+  selectedButton: {
+    //position: "absolute",
+    // bottom: 0.1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#777777",
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
+    //width: 200,
+    flex: 0.4,
+    height: 50,
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 10,
+    shadowOpacity: 0.25
   }
 });
 
