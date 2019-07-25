@@ -207,17 +207,25 @@ class Two extends React.Component {
     return (
       <View style={styles.container}>
         <Question_2 action={this.handler} />
-        {/*remove this
-            <Text>{this.state.arrayMap[0]}</Text>
-            */}
+
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
-            //console.log(this.componentMap.get("response_one_medicaid"));
             this.state.componentMap.set(
               "response_two",
               this.state.response_two
-            );
+              );
+              if (this.state.componentMap.size != 1 &&
+                  this.state.componentMap.get("response_two")) {
+                  //MESSAGE FOR PELL ELIGIBILITY
+                  console.log(this.state.componentMap.size);
+                  alert("Congrats you are eligible for $6,175 in Pell");
+              }
+              else {
+                  //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
+                  alert("pop-up message about average pell amount and info about other calculators")
+              }
+
             this.props.navigation.navigate("QuestionThree", {
               componentMap: this.state.componentMap
             });
@@ -250,6 +258,7 @@ class Three extends React.Component {
     return (
       <View style={styles.container}>
         <Question_3 action={this.handler} />
+            
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -261,7 +270,9 @@ class Three extends React.Component {
               this.props.navigation.navigate("QuestionFour", {
                 componentMap: this.state.componentMap
               });
-            } else {
+            }
+            else {
+                alert("Students must attend college at least half time to be eligible for food assistance");
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
@@ -302,11 +313,13 @@ class Four extends React.Component {
               "response_four",
               this.state.response_four
             );
-            if (this.state.response_four === "e") {
+            if (this.state.response_four == "e") {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
             } else {
+                //POP-UP MESSAGE ABOUT REQUIREMENT TO MEET ONE OF THE CRITERIA TO BE ELIGIBLE FOR SNAP
+                alert("Pop-up message about requirement to meet one of the criteria to be eligible for SNAP");
               this.props.navigation.navigate("QuestionFive", {
                 componentMap: this.state.componentMap
               });
@@ -352,14 +365,25 @@ class Five extends React.Component {
             //   console.log(key + " = " + value);
             // }
 
-            if (
-              this.state.componentMap.get("response_one_snap") &&
-              this.state.response_five == "a"
-            ) {
-              this.props.navigation.navigate("QuestionSix", {
-                componentMap: this.state.componentMap
-              });
-            } else {
+              if (
+                  this.state.componentMap.get("response_one_snap") &&
+                  this.state.response_five == "a") {
+
+                  alert("You will continue to be counted on existing SNAP case until age 22 if you continue to live at home");
+                  this.props.navigation.navigate("QuestionSix", {
+                      componentMap: this.state.componentMap
+                  });
+              } else if (this.state.componentMap.get(response_five) == "b") {
+                  alert("Some students with meal plans could be eligible for food assistance, but more information is required");
+                  this.props.navigation.navigate("QuestionSix", {
+                      componentMap: this.state.componentMap
+                  });
+              } else if (this.state.componentMap.get(response_five) == "c" || this.state.componentMap.get(response_five) == "d"){
+                  this.props.navigation.navigate("QuestionSix", {
+                      componentMap: this.state.componentMap
+                  });
+              } else {
+                  //CHECK WITH MATT/DENISE: CASES FOR NON "C" FOR #1 AND "A" FOR #5 GO TO RESULTS?
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
@@ -431,10 +455,12 @@ class Six extends React.Component {
               this.props.navigation.navigate("QuestionSeven", {
                 componentMap: this.state.componentMap
               });
-
+                //ERASE LATER
               console.log(this.state.componentMap.get("fill_seven"));
             } else {
               //ADD POPUP MESSAGE HERE
+                alert("You must enter a valid number of household members");
+                //ERASE LATER
               console.log(this.state.response_six);
             }
           }}
@@ -476,9 +502,18 @@ class Seven extends React.Component {
               "response_seven",
               this.state.response_seven
             );
-            this.props.navigation.navigate("QuestionEight", {
-              componentMap: this.state.componentMap
-            });
+
+              if (!this.state.componentMap.get("response_seven")) {
+
+                  this.props.navigation.navigate("QuestionEight", {
+                      componentMap: this.state.componentMap
+                  });
+              }
+              else {
+                  this.props.navigation.navigate("Results", {
+                      componentMap: this.state.componentMap
+                  });
+              }
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
