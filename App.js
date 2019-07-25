@@ -101,66 +101,87 @@ class SplashScreen extends React.Component {
 }
 
 class One extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handler = this.handler.bind(this);
-        this.state = {
-
-            componentMap: new Map(),  
-            response_one_medicaid: false,
-            response_one_ssi: false,
-            response_one_snap: false,
-            response_one_reduced: false,
-            response_one_tnaf: false,
-            response_one_wic: false
-        };
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      componentMap: new Map(),
+      response_one_medicaid: false,
+      response_one_ssi: false,
+      response_one_snap: false,
+      response_one_reduced: false,
+      response_one_tnaf: false,
+      response_one_wic: false
+    };
+  }
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
+          response_one_medicaid: !this.state.response_one_medicaid
+        });
+        break;
+      case 2:
+        this.setState({ response_one_ssi: !this.state.response_one_ssi });
+        break;
+      case 3:
+        this.setState({ response_one_snap: !this.state.response_one_snap });
+        break;
+      case 4:
+        this.setState({
+          response_one_reduced: !this.state.response_one_reduced
+        });
+        break;
+      case 5:
+        this.setState({ response_one_tnaf: !this.state.response_one_tnaf });
+        break;
+      case 6:
+        this.setState({ response_one_wic: !this.state.response_one_wic });
+        break;
     }
-    handler(property) {
-        switch (property) {
-            case 1:
-                this.setState({ response_one_medicaid: !this.state.response_one_medicaid });
-                break;
-            case 2:
-                this.setState({ response_one_ssi: !this.state.response_one_ssi });
-                break;
-            case 3:
-                this.setState({ response_one_snap: !this.state.response_one_snap });
-                break;
-            case 4:
-                this.setState({ response_one_reduced: !this.state.response_one_reduced });
-                break;
-            case 5:
-                this.setState({ response_one_tnaf: !this.state.response_one_tnaf });
-                break;
-            case 6:
-                this.setState({ response_one_wic: !this.state.response_one_wic });
-                break;
-        }
-    }
+  }
 
-    render() {
-        return (
-            <View style={styles.container}>
-            <Question_1 action={this.handler} />
-            <TouchableOpacity
-                style={styles.buttonContainerTwo}
-                    onPress={() => {
-                        this.state.componentMap.set("response_one_medicaid", this.state.response_one_medicaid);
-                        this.state.componentMap.set("response_one_ssi", this.state.response_one_ssi);
-                        this.state.componentMap.set("response_one_snap", this.state.response_one_snap);
-                        this.state.componentMap.set("response_one_reduced", this.state.response_one_reduced);
-                        this.state.componentMap.set("response_one_tnaf", this.state.response_one_tnaf);
-                        this.state.componentMap.set("response_one_wic", this.state.response_one_wic);
-                        this.props.navigation.navigate("QuestionTwo", { componentMap: this.state.componentMap });
-                    }}
-                >
-                <Text style={{ color: "white" }}>Next</Text>
-            </TouchableOpacity>
-            </View>
-        );
-    }
-
-
+  render() {
+    return (
+      <View style={styles.container}>
+        <Question_1 action={this.handler} />
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.state.componentMap.set(
+              "response_one_medicaid",
+              this.state.response_one_medicaid
+            );
+            this.state.componentMap.set(
+              "response_one_ssi",
+              this.state.response_one_ssi
+            );
+            this.state.componentMap.set(
+              "response_one_snap",
+              this.state.response_one_snap
+            );
+            this.state.componentMap.set(
+              "response_one_reduced",
+              this.state.response_one_reduced
+            );
+            this.state.componentMap.set(
+              "response_one_tnaf",
+              this.state.response_one_tnaf
+            );
+            this.state.componentMap.set(
+              "response_one_wic",
+              this.state.response_one_wic
+            );
+            this.props.navigation.navigate("QuestionTwo", {
+              componentMap: this.state.componentMap
+            });
+          }}
+        >
+          <Text style={{ color: "white" }}>Next</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
 class Two extends React.Component {
@@ -168,9 +189,8 @@ class Two extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-        response_two: false,
-        componentMap: this.props.navigation.state.params.componentMap,
-        //arrayMap: this.props.navigation.state.params.componentMap.entries().next().value
+      response_two: false,
+      componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
@@ -184,14 +204,20 @@ class Two extends React.Component {
     return (
       <View style={styles.container}>
         <Question_2 action={this.handler} />
-            {/*remove this
+        {/*remove this
             <Text>{this.state.arrayMap[0]}</Text>
             */}
-      <TouchableOpacity
+        <TouchableOpacity
           style={styles.buttonContainerTwo}
-                onPress={() => {
-                    //console.log(this.componentMap.get("response_one_medicaid"));
-            this.props.navigation.navigate("QuestionThree");
+          onPress={() => {
+            //console.log(this.componentMap.get("response_one_medicaid"));
+            this.state.componentMap.set(
+              "response_two",
+              this.state.response_two
+            );
+            this.props.navigation.navigate("QuestionThree", {
+              componentMap: this.state.componentMap
+            });
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -206,7 +232,8 @@ class Three extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_three: false
+      response_three: false,
+      componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
@@ -223,10 +250,18 @@ class Three extends React.Component {
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
+            this.state.componentMap.set(
+              "response_three",
+              this.state.response_three
+            );
             if (this.state.response_three) {
-              this.props.navigation.navigate("QuestionFour");
+              this.props.navigation.navigate("QuestionFour", {
+                componentMap: this.state.componentMap
+              });
             } else {
-              this.props.navigation.navigate("Results");
+              this.props.navigation.navigate("Results", {
+                componentMap: this.state.componentMap
+              });
             }
           }}
         >
@@ -242,7 +277,8 @@ class Four extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_four: ""
+      response_four: "",
+      componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
@@ -259,10 +295,18 @@ class Four extends React.Component {
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
+            this.state.componentMap.set(
+              "response_four",
+              this.state.response_four
+            );
             if (this.state.response_four === "e") {
-              this.props.navigation.navigate("Results");
+              this.props.navigation.navigate("Results", {
+                componentMap: this.state.componentMap
+              });
             } else {
-              this.props.navigation.navigate("QuestionFive");
+              this.props.navigation.navigate("QuestionFive", {
+                componentMap: this.state.componentMap
+              });
             }
           }}
         >
