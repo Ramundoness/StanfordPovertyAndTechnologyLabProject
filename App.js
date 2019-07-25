@@ -370,7 +370,7 @@ class Five extends React.Component {
                   this.state.response_five == "a") {
 
                   alert("You will continue to be counted on existing SNAP case until age 22 if you continue to live at home");
-                  this.props.navigation.navigate("QuestionSix", {
+                  this.props.navigation.navigate("Results", {
                       componentMap: this.state.componentMap
                   });
               } else if (this.state.componentMap.get(response_five) == "b") {
