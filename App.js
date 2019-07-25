@@ -100,11 +100,16 @@ class SplashScreen extends React.Component {
   }
 }
 
+//var componentMap = new Map();
+
 class One extends React.Component {
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
+
+        componentMap: new Map(),
+        
       response_one_medicaid: false,
       response_one_ssi: false,
       response_one_snap: false,
@@ -114,12 +119,12 @@ class One extends React.Component {
     };
   }
 
+    //componentMap : new Map();
+
   handler(property) {
     switch (property) {
       case 1:
-        this.setState({
-          response_one_medicaid: !this.state.response_one_medicaid
-        });
+        this.setState({ response_one_medicaid: !this.state.response_one_medicaid });
         break;
       case 2:
         this.setState({ response_one_ssi: !this.state.response_one_ssi });
@@ -128,9 +133,7 @@ class One extends React.Component {
         this.setState({ response_one_snap: !this.state.response_one_snap });
         break;
       case 4:
-        this.setState({
-          response_one_reduced: !this.state.response_one_reduced
-        });
+        this.setState({ response_one_reduced: !this.state.response_one_reduced });
         break;
       case 5:
         this.setState({ response_one_tnaf: !this.state.response_one_tnaf });
@@ -147,21 +150,24 @@ class One extends React.Component {
         <Question_1 action={this.handler} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
-          onPress={() => {
+                onPress={() => {
+                    this.state.componentMap.set("response_one_medicaid", this.state.response_one_medicaid);
             // console.log(this.state.response_one_medicaid);
             // console.log(this.state.response_one_ssi);
             // console.log(this.state.response_one_snap);
             // console.log(this.state.response_one_reduced);
             // console.log(this.state.response_one_tnaf);
-            // console.log(this.state.response_one_wic);
-            this.props.navigation.navigate("QuestionTwo");
+                    // console.log(this.state.response_one_wic);
+                    this.props.navigation.navigate("QuestionTwo", { componentMap: this.state.componentMap });
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
         </TouchableOpacity>
       </View>
     );
-  }
+    }
+
+
 }
 
 class Two extends React.Component {
@@ -169,7 +175,12 @@ class Two extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_two: false
+        response_two: false,
+        componentMap: this.props.navigation.state.params.componentMap,
+
+        //iteratorMap: componentMap.entries(),
+
+        arrayMap: this.props.navigation.state.params.componentMap.entries().next().value
     };
   }
 
@@ -183,10 +194,13 @@ class Two extends React.Component {
     return (
       <View style={styles.container}>
         <Question_2 action={this.handler} />
-        <TouchableOpacity
+            
+            <Text>{this.state.arrayMap[0]}</Text>
+            
+      <TouchableOpacity
           style={styles.buttonContainerTwo}
-          onPress={() => {
-            console.log(this.state.response_two);
+                onPress={() => {
+                    //console.log(this.componentMap.get("response_one_medicaid"));
             this.props.navigation.navigate("QuestionThree");
           }}
         >
