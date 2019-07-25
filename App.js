@@ -520,9 +520,9 @@ class Eight extends React.Component {
               componentMap: this.state.componentMap
             });
 
-            for (var [key, value] of this.state.componentMap) {
-              console.log(key + " = " + value);
-            }
+            // for (var [key, value] of this.state.componentMap) {
+            //   console.log(key + " = " + value);
+            // }
           }}
         >
           <Text style={{ color: "white" }}>Finish</Text>
@@ -541,9 +541,13 @@ class Result extends React.Component {
   }
 
   render() {
+    for (var [key, value] of this.state.componentMap) {
+      console.log(key + " = " + value);
+    }
+
     return (
       <View style={styles.container}>
-        <Result data={this.state.componentMap} />
+        <Results data={this.state.componentMap} />
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => {
