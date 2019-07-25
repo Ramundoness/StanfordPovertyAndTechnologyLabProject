@@ -15,7 +15,12 @@ import {
 class Results extends Component {
   state = {};
   render() {
-    return <View />;
+    return (
+      <View>
+        <Text>Pell: $</Text>
+        <Text>SNAP: $</Text>
+      </View>
+    );
   }
 }
 

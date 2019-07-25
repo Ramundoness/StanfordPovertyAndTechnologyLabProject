@@ -23,6 +23,7 @@ import Question_5 from "./components/question_5";
 import Question_6 from "./components/question_6";
 import Question_7 from "./components/question_7";
 import Question_8 from "./components/question_8";
+import Results from "./components/results";
 
 import HomeScreen from "./components/homescreen";
 
@@ -542,7 +543,7 @@ class Result extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>REPLACE ME WITH A COMPONENT FOR THE RESULT</Text>
+        <Result data={this.state.componentMap} />
         <TouchableOpacity
           style={styles.buttonContainer}
           onPress={() => {
