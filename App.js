@@ -384,7 +384,7 @@ class Five extends React.Component {
                   });
               } else {
                   //CHECK WITH MATT/DENISE: CASES FOR NON "C" FOR #1 AND "A" FOR #5 GO TO RESULTS?
-              this.props.navigation.navigate("Results", {
+              this.props.navigation.navigate("QuestionSix", {
                 componentMap: this.state.componentMap
               });
             }
