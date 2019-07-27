@@ -2,40 +2,47 @@ import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
-class Question_8 extends Component {
+class Question_7 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      question_8_selectedYes: false,
-      question_8_selectedNo: false
+      question_7_selectedYes: false,
+      question_7_selectedNo: false
     };
   }
 
   yesPressed() {
     this.setState({
-      question_8_selectedYes: !this.state.question_8_selectedYes,
-      question_8_selectedNo: false
+      question_7_selectedYes: !this.state.question_7_selectedYes,
+      question_7_selectedNo: false
     });
   }
 
   noPressed() {
     this.setState({
-      question_8_selectedNo: !this.state.question_8_selectedNo,
-      question_8_selectedYes: false
+      question_7_selectedNo: !this.state.question_7_selectedNo,
+      question_7_selectedYes: false
     });
   }
 
   render() {
     return (
       <View style={styles.container}>
-        {/* Question #8 */}
+        <Text style={styles.title}>
+          Let's think about what your income will look like in college
+        </Text>
+        {/* empty view for border line */}
+        <View style={styles.border} />
+
+        {/* Question #7 */}
         <Text style={styles.question}>
-          8. Do you have more than $2,250 in savings?
+          7. Do you think your monthly household income will be more than $
+          {this.props.data}?
         </Text>
         <View style={{ flexDirection: "row", justifyContent: "center" }}>
           <Text
             style={
-              this.state.question_8_selectedYes
+              this.state.question_7_selectedYes
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
@@ -46,7 +53,7 @@ class Question_8 extends Component {
           </Text>
           <Text
             style={
-              this.state.question_8_selectedNo
+              this.state.question_7_selectedNo
                 ? styles.selectedBinaryOption
                 : styles.unselectedBinaryOption
             }
@@ -61,4 +68,4 @@ class Question_8 extends Component {
     );
   }
 }
-export default Question_8;
+export default Question_7;
