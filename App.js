@@ -34,8 +34,8 @@ import { Font } from "expo";
 class App extends React.Component {
   componentDidMount() {
     Font.loadAsync({
-      montserrat: require("./assets/fonts/montserrat.ttf"),
-      montserrat_bold: require("./assets/fonts/montserrat_bold.ttf")
+      'montserrat': require("./assets/fonts/montserrat.ttf"),
+      'montserrat_bold': require("./assets/fonts/montserrat_bold.ttf")
     });
   }
   render() {
