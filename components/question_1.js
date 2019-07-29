@@ -3,53 +3,53 @@ import { View, Text } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_1 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected_medicaid: false,
-      selected_SSI: false,
-      selected_SNAP: false,
-      selected_reduced: false,
-      selected_TANF: false,
-      selected_WIC: false
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     selected_medicaid: false,
+  //     selected_SSI: false,
+  //     selected_SNAP: false,
+  //     selected_reduced: false,
+  //     selected_TANF: false,
+  //     selected_WIC: false
+  //   };
+  // }
 
-  medicaidPressed() {
-    this.setState({
-      selectedMedicaid: !this.state.selected_medicaid
-    });
-  }
+  // medicaidPressed() {
+  //   this.setState({
+  //     selected_medicaid: !this.state.selected_medicaid
+  //   });
+  // }
 
-  ssiPressed() {
-    this.setState({
-      selectedSSI: !this.state.selected_SSI
-    });
-  }
+  // ssiPressed() {
+  //   this.setState({
+  //     selected_SSI: !this.state.selected_SSI
+  //   });
+  // }
 
-  snapPressed() {
-    this.setState({
-      selectedSNAP: !this.state.selected_SNAP
-    });
-  }
+  // snapPressed() {
+  //   this.setState({
+  //     selected_SNAP: !this.state.selected_SNAP
+  //   });
+  // }
 
-  reducedPressed() {
-    this.setState({
-      selectedReduced: !this.state.selected_reduced
-    });
-  }
+  // reducedPressed() {
+  //   this.setState({
+  //     selected_reduced: !this.state.selected_reduced
+  //   });
+  // }
 
-  tanfPressed() {
-    this.setState({
-      selectedTANF: !this.state.selected_TANF
-    });
-  }
+  // tanfPressed() {
+  //   this.setState({
+  //     selected_TANF: !this.state.selected_TANF
+  //   });
+  // }
 
-  wicPressed() {
-    this.setState({
-      selectedWIC: !this.state.selected_WIC
-    });
-  }
+  // wicPressed() {
+  //   this.setState({
+  //     selected_WIC: !this.state.selected_WIC
+  //   });
+  // }
 
   render() {
     return (
@@ -66,7 +66,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.state.selected_medicaid
+            this.props.medicaid
               ? styles.selectedOption
               : styles.unselectedOption
           }
@@ -77,29 +77,30 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.state.selected_SSI
+            this.props.ssi
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.ssiPressed.bind(this)}
+          // onPress={this.ssiPressed.bind(this)}
           onPress={this.props.action.bind(this, 2)}
         >
           b. SSI
         </Text>
+        {/* {} => {console.log("hello")} */}
         <Text
           style={
-            this.state.selected_SNAP
+            this.props.snap
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.snapPressed.bind(this)}
+          // onPress={this.snapPressed.bind(this)}
           onPress={this.props.action.bind(this, 3)}
         >
           c. SNAP
         </Text>
         <Text
           style={
-            this.state.selected_reduced
+            this.props.reduced
               ? styles.selectedOption
               : styles.unselectedOption
           }
@@ -110,7 +111,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.state.selected_TANF
+            this.props.tanf
               ? styles.selectedOption
               : styles.unselectedOption
           }
@@ -121,7 +122,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.state.selected_WIC
+            this.props.wic
               ? styles.selectedOption
               : styles.unselectedOption
           }

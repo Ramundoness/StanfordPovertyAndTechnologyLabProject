@@ -113,33 +113,40 @@ class One extends React.Component {
       response_one_ssi: false,
       response_one_snap: false,
       response_one_reduced: false,
-      response_one_tnaf: false,
-      response_one_wic: false
+      response_one_tanf: false,
+      response_one_wic: false,
+      //componentMap: this.props.navigation.state.params.componentMap
     };
   }
   handler(property) {
     switch (property) {
       case 1:
         this.setState({
-          response_one_medicaid: !this.state.response_one_medicaid
+          response_one_medicaid: !this.state.response_one_medicaid,
         });
+        console.log("1 " + this.state.response_one_medicaid)
         break;
       case 2:
         this.setState({ response_one_ssi: !this.state.response_one_ssi });
+        console.log("2 we are here")
         break;
       case 3:
         this.setState({ response_one_snap: !this.state.response_one_snap });
+        console.log("3 we are here")
         break;
       case 4:
         this.setState({
           response_one_reduced: !this.state.response_one_reduced
         });
+        console.log("4 we are here")
         break;
       case 5:
-        this.setState({ response_one_tnaf: !this.state.response_one_tnaf });
+        this.setState({ response_one_tanf: !this.state.response_one_tanf });
+        console.log("5 we are here")
         break;
       case 6:
         this.setState({ response_one_wic: !this.state.response_one_wic });
+        console.log("6 we are here")
         break;
     }
   }
@@ -147,7 +154,14 @@ class One extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Question_1 action={this.handler} />
+        <Question_1
+          action={this.handler}
+          medicaid={this.state.response_one_medicaid}
+          ssi={this.state.response_one_ssi}
+          snap={this.state.response_one_snap}
+          reduced={this.state.response_one_reduced}
+          tanf={this.state.response_one_tanf}
+          wic={this.state.response_one_wic} />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -168,8 +182,8 @@ class One extends React.Component {
               this.state.response_one_reduced
             );
             this.state.componentMap.set(
-              "response_one_tnaf",
-              this.state.response_one_tnaf
+              "response_one_tanf",
+              this.state.response_one_tanf
             );
             this.state.componentMap.set(
               "response_one_wic",
