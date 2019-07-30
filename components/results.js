@@ -1,24 +1,23 @@
 import React, { Component } from "react";
-import {
-  View,
-  Image,
-  StyleSheet,
-  Text,
-  FlatList,
-  TextInput,
-  Keyboard,
-  Picker,
-  Button,
-  StatusBar
-} from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import { styles } from "../stylesheets/question-styles";
 
 class Results extends Component {
-  state = {};
+    /*constructor(props) {
+        super(props);
+        this.state = {
+            componentMap: this.props.data,
+        };
+    }*/
+
+
+
+    state = {};
   render() {
     return (
-      <View>
-        <Text>Pell: $</Text>
-        <Text>SNAP: $</Text>
+        <View>
+            <Text>Pell: ${this.props.pResults}</Text>
+            <Text>SNAP: ${this.props.sResults}</Text>
       </View>
     );
   }
