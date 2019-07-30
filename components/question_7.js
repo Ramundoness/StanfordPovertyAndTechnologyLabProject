@@ -1,30 +1,8 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_7 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      question_7_selectedYes: false,
-      question_7_selectedNo: false
-    };
-  }
-
-  yesPressed() {
-    this.setState({
-      question_7_selectedYes: !this.state.question_7_selectedYes,
-      question_7_selectedNo: false
-    });
-  }
-
-  noPressed() {
-    this.setState({
-      question_7_selectedNo: !this.state.question_7_selectedNo,
-      question_7_selectedYes: false
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -39,30 +17,29 @@ class Question_7 extends Component {
           7. Do you think your monthly household income will be more than $
           {this.props.data}?
         </Text>
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <Text
+        <View
+          style={{
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
+        >
+          <TouchableOpacity
             style={
-              this.state.question_7_selectedYes
-                ? styles.selectedBinaryOption
-                : styles.unselectedBinaryOption
+              this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
-            //onPress={this.yesPressed.bind(this)}
             onPress={this.props.action.bind(this, true)}
           >
-            Yes
-          </Text>
-          <Text
+            <Text style={{ color: "white" }}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={
-              this.state.question_7_selectedNo
-                ? styles.selectedBinaryOption
-                : styles.unselectedBinaryOption
+              this.props.no ? styles.selectedButton : styles.unselectedButton
             }
-            //onPress={this.noPressed.bind(this)}
             onPress={this.props.action.bind(this, false)}
           >
-            {" "}
-            No
-          </Text>
+            <Text style={{ color: "white" }}>No</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

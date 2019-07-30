@@ -3,47 +3,6 @@ import { View, Text } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_4 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selected_work_study: false,
-      selected_work_20: false,
-      selected_vocational: false,
-      selected_child: false,
-      selected_none: false
-    };
-  }
-
-  workStudyPressed() {
-    this.setState({
-      selectedWorkStudy: !this.state.selected_work_study
-    });
-  }
-
-  work20Pressed() {
-    this.setState({
-      selectedWork20: !this.state.selected_work_20
-    });
-  }
-
-  vocationalPressed() {
-    this.setState({
-      selectedVocational: !this.state.selected_vocational
-    });
-  }
-
-  childPressed() {
-    this.setState({
-      selectedChild: !this.state.selected_child
-    });
-  }
-
-  nonePressed() {
-    this.setState({
-      selectedNone: !this.state.selected_none
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -54,56 +13,51 @@ class Question_4 extends Component {
         </Text>
         <Text
           style={
-            this.state.selected_work_study
+            this.props.work_study
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.workStudyPressed.bind(this)}
-          onPress={this.props.action.bind(this, "a")}
+          onPress={this.props.action.bind(this, 1)}
         >
           a. I plan to participate in work study
         </Text>
         <Text
           style={
-            this.state.selected_work_20
+            this.props.work_20
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.work20Pressed.bind(this)}
-          onPress={this.props.action.bind(this, "b")}
+          onPress={this.props.action.bind(this, 2)}
         >
           b. I plan to work at least 20 hours per week
         </Text>
         <Text
           style={
-            this.state.selected_vocational
+            this.props.vocational
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.vocationalPressed.bind(this)}
-          onPress={this.props.action.bind(this, "c")}
+          onPress={this.props.action.bind(this, 3)}
         >
           c. I plan to be enrolled in a vocational training program
         </Text>
         <Text
           style={
-            this.state.selected_child
+            this.props.child
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.childPressed.bind(this)}
-          onPress={this.props.action.bind(this, "d")}
+          onPress={this.props.action.bind(this, 4)}
         >
           I plan to support a child under 6 years old while I am in college
         </Text>
         <Text
           style={
-            this.state.selected_none
+            this.props.none
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.nonePressed.bind(this)}
-          onPress={this.props.action.bind(this, "e")}
+          onPress={this.props.action.bind(this, 5)}
         >
           e. None apply
         </Text>

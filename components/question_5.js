@@ -3,50 +3,6 @@ import { View, Text } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_5 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      question_5_selectedHome: false,
-      question_5_selectedOncampus: false,
-      question_5_selectedOffcampusOwn: false,
-      question_5_selectedOffcampus: false
-    };
-  }
-
-  homePressed() {
-    this.setState({
-      question_5_selectedHome: true,
-      question_5_selectedOncampus: false,
-      question_5_selectedOffcampusOwn: false,
-      question_5_selectedOffcampus: false
-    });
-  }
-
-  oncampusPressed() {
-    this.setState({
-      question_5_selectedHome: false,
-      question_5_selectedOncampus: true,
-      question_5_selectedOffcampusOwn: false,
-      question_5_selectedOffcampus: false
-    });
-  }
-  offcampusownPressed() {
-    this.setState({
-      question_5_selectedHome: false,
-      question_5_selectedOncampus: false,
-      question_5_selectedOffcampusOwn: true,
-      question_5_selectedOffcampus: false
-    });
-  }
-  offcampusPressed() {
-    this.setState({
-      question_5_selectedHome: false,
-      question_5_selectedOncampus: false,
-      question_5_selectedOffcampusOwn: false,
-      question_5_selectedOffcampus: true
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -62,45 +18,41 @@ class Question_5 extends Component {
         </Text>
         <Text
           style={
-            this.state.question_5_selectedHome
+            this.props.home
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.homePressed.bind(this)}
-          onPress={this.props.action.bind(this, "a")}
+          onPress={this.props.action.bind(this, 1)}
         >
           a. Remain at home with my family
         </Text>
         <Text
           style={
-            this.state.question_5_selectedOncampus
+            this.props.on_campus
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.oncampusPressed.bind(this)}
-          onPress={this.props.action.bind(this, "b")}
+          onPress={this.props.action.bind(this, 2)}
         >
           b. On-campus in college housing with a meal plan
         </Text>
         <Text
           style={
-            this.state.question_5_selectedOffcampusOwn
+            this.props.off_campus_own
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.offcampusownPressed.bind(this)}
-          onPress={this.props.action.bind(this, "c")}
+          onPress={this.props.action.bind(this, 3)}
         >
           c. Off-campus on my own
         </Text>
         <Text
           style={
-            this.state.question_5_selectedOffcampus
+            this.props.off_campus_roommates
               ? styles.selectedOption
               : styles.unselectedOption
           }
-          //onPress={this.offcampusPressed.bind(this)}
-          onPress={this.props.action.bind(this, "d")}
+          onPress={this.props.action.bind(this, 4)}
         >
           d. Off-campus with roommates (not parents/legal guardians)
         </Text>

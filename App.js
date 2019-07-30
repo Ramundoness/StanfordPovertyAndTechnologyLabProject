@@ -124,29 +124,23 @@ class One extends React.Component {
         this.setState({
           response_one_medicaid: !this.state.response_one_medicaid,
         });
-        console.log("1 " + this.state.response_one_medicaid)
         break;
       case 2:
         this.setState({ response_one_ssi: !this.state.response_one_ssi });
-        console.log("2 we are here")
         break;
       case 3:
         this.setState({ response_one_snap: !this.state.response_one_snap });
-        console.log("3 we are here")
         break;
       case 4:
         this.setState({
           response_one_reduced: !this.state.response_one_reduced
         });
-        console.log("4 we are here")
         break;
       case 5:
         this.setState({ response_one_tanf: !this.state.response_one_tanf });
-        console.log("5 we are here")
         break;
       case 6:
         this.setState({ response_one_wic: !this.state.response_one_wic });
-        console.log("6 we are here")
         break;
     }
   }
@@ -289,41 +283,75 @@ class Three extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_three: false,
+      response_three_yes: false,
+      response_three_no: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
   handler(result) {
-    this.setState({
-      response_three: result
-    });
+    if (result) {
+      this.setState(
+        {
+          response_three_yes: true,
+          response_three_no: false
+        },
+        () => {
+          console.log(this.state.response_three_yes);
+          console.log(this.state.response_three_no);
+        }
+      );
+    } else {
+      this.setState(
+        {
+          response_three_yes: false,
+          response_three_no: true
+        },
+        () => {
+          console.log(this.state.response_three_yes);
+          console.log(this.state.response_three_no);
+        }
+      );
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Question_3 action={this.handler} />
+        <Question_3
+          action={this.handler}
+          yes={this.state.response_three_yes}
+          no={this.state.response_three_no}
+        />
 
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_three",
-              this.state.response_three
+              "response_three_yes",
+              this.state.response_three_yes
             );
-            if (this.state.response_three) {
-              this.props.navigation.navigate("QuestionFour", {
-                componentMap: this.state.componentMap
-              });
+            this.state.componentMap.set(
+              "response_three_no",
+              this.state.response_three_no
+            );
+            if (
+              this.state.componentMap.size != 1 &&
+              this.state.componentMap.get("response_three_yes")
+            ) {
+              //MESSAGE FOR PELL ELIGIBILITY
+              console.log(this.state.componentMap.size);
+              alert("Congrats you are eligible for $6,175 in Pell");
             } else {
+              //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
               alert(
-                "Students must attend college at least half time to be eligible for food assistance"
+                "pop-up message about average pell amount and info about other calculators"
               );
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
             }
+
+            this.props.navigation.navigate("QuestionFour", {
+              componentMap: this.state.componentMap
+            });
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -338,29 +366,80 @@ class Four extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_four: "",
+      response_four_work_study: false,
+      response_four_20_hours: false,
+      response_four_vocational: false,
+      response_four_child: false,
+      response_four_none: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
-  handler(result) {
-    this.setState({
-      response_four: result
-    });
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
+          response_four_work_study: !this.state.response_four_work_study,
+        });
+        break;
+      case 2:
+        this.setState({ 
+          response_four_20_hours: !this.state.response_four_20_hours 
+        });
+        break;
+      case 3:
+        this.setState({ 
+          response_four_vocational: !this.state.response_four_vocational 
+        });
+        break;
+      case 4:
+        this.setState({
+          response_four_child: !this.state.response_four_child
+        });
+        break;
+      case 5:
+        this.setState({ 
+          response_four_none: !this.state.response_four_none 
+        });
+        break;
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Question_4 action={this.handler} />
+        <Question_4 
+          action={this.handler}
+          work_study={this.state.response_four_work_study}
+          work_20={this.state.response_four_20_hours}
+          vocational={this.state.response_four_vocational}
+          child={this.state.response_four_child}
+          none={this.state.response_four_none}/>
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_four",
-              this.state.response_four
+              "response_four_work_study",
+              this.state.response_four_work_study
             );
-            if (this.state.response_four == "e") {
+            this.state.componentMap.set(
+              "response_four_20_hours",
+              this.state.response_four_20_hours
+            );
+            this.state.componentMap.set(
+              "response_four_vocational",
+              this.state.response_four_vocational
+            );
+            this.state.componentMap.set(
+              "response_four_child",
+              this.state.response_four_child
+            );
+            this.state.componentMap.set(
+              "response_four_none",
+              this.state.response_four_none
+            );
+            if (this.state.componentMap.size != 1 && 
+                this.state.componentMap.get("response_four_none")) {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
@@ -387,36 +466,84 @@ class Five extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_five: "",
+      response_five_remain_home: false,
+      response_five_on_campus: false,
+      response_five_off_campus_own: false,
+      response_five_off_campus_roommates:false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
-  handler(result) {
-    this.setState({
-      response_five: result
-    });
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
+          response_five_remain_home: !this.state.response_five_remain_home,
+          response_five_on_campus: false,
+          response_five_off_campus_own: false,
+          response_five_off_campus_roommates:false,
+        });
+        break;
+      case 2:
+        this.setState({ 
+          response_five_on_campus: !this.state.response_five_on_campus,
+          response_five_remain_home: false,
+          response_five_off_campus_own: false,
+          response_five_off_campus_roommates:false,
+        });
+        break;
+      case 3:
+        this.setState({ 
+          response_five_off_campus_own: !this.state.response_five_off_campus_own,
+          response_five_remain_home: false,
+          response_five_on_campus: false,
+          response_five_off_campus_roommates:false,
+        });
+        break;
+      case 4:
+        this.setState({
+          response_five_off_campus_roommates: !this.state.response_five_off_campus_roommates,
+          response_five_remain_home: false,
+          response_five_on_campus: false,
+          response_five_off_campus_own: false,
+        });
+        break;
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Question_5 action={this.handler} />
+        <Question_5 
+          action={this.handler} 
+          home={this.state.response_five_remain_home}
+          on_campus={this.state.response_five_on_campus}
+          off_campus_own={this.state.response_five_off_campus_own}
+          off_campus_roommates={this.state.response_five_off_campus_roommates}/>
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_five",
-              this.state.response_five
+              "response_five_remain_home",
+              this.state.response_five_remain_home
             );
-
-            // for (var [key, value] of this.state.componentMap) {
-            //   console.log(key + " = " + value);
-            // }
-
+            this.state.componentMap.set(
+              "response_five_on_campus",
+              this.state.response_five_on_campus
+            );
+            this.state.componentMap.set(
+              "response_five_off_campus_own",
+              this.state.response_five_off_campus_own
+            );
+            this.state.componentMap.set(
+              "response_five_off_campus_roommates",
+              this.state.response_five_off_campus_roommates
+            );
+            
+            // TODO: Check that all these conditions work
             if (
               this.state.componentMap.get("response_one_snap") &&
-              this.state.response_five == "a"
+              this.state.response_five == 1
             ) {
               alert(
                 "You will continue to be counted on existing SNAP case until age 22 if you continue to live at home"
@@ -424,7 +551,7 @@ class Five extends React.Component {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
-            } else if (this.state.componentMap.get(response_five) == "b") {
+            } else if (this.state.componentMap.get("response_five_on_campus") == 2) {
               alert(
                 "Some students with meal plans could be eligible for food assistance, but more information is required"
               );
@@ -432,8 +559,8 @@ class Five extends React.Component {
                 componentMap: this.state.componentMap
               });
             } else if (
-              this.state.componentMap.get(response_five) == "c" ||
-              this.state.componentMap.get(response_five) == "d"
+              this.state.componentMap.get("response_five_off_campus_own") == 3 ||
+              this.state.componentMap.get("response_five_off_campus_roommates") == 4
             ) {
               this.props.navigation.navigate("QuestionSix", {
                 componentMap: this.state.componentMap
@@ -533,15 +660,28 @@ class Seven extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_seven: false,
+      response_seven_yes: false,
+      response_seven_no: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
   handler(result) {
-    this.setState({
-      response_seven: result
-    });
+    if (result) {
+      this.setState(
+        {
+          response_seven_yes: true,
+          response_seven_no: false
+        },
+      );
+    } else {
+      this.setState(
+        {
+          response_seven_yes: false,
+          response_seven_no: true
+        },
+      );
+    }
   }
 
   render() {
@@ -549,17 +689,21 @@ class Seven extends React.Component {
       <View style={styles.container}>
         <Question_7
           action={this.handler}
-          data={this.state.componentMap.get("fill_seven")}
+          yes={this.state.response_seven_yes}
+          no={this.state.response_seven_no}
         />
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_seven",
-              this.state.response_seven
+              "response_seven_yes",
+              this.state.response_seven_yes
             );
-
-            if (!this.state.componentMap.get("response_seven")) {
+            this.state.componentMap.set(
+              "response_seven_no",
+              this.state.response_seven_no
+            );
+            if (!this.state.componentMap.get("response_seven_yes")) {
               this.props.navigation.navigate("QuestionEight", {
                 componentMap: this.state.componentMap
               });
@@ -582,29 +726,48 @@ class Eight extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_eight: false,
+      response_eight_yes: false,
+      response_eight_no: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
   handler(result) {
-    this.setState({
-      response_eight: result
-    });
+    if (result) {
+      this.setState(
+        {
+          response_eight_yes: true,
+          response_eight_no: false
+        },
+      );
+    } else {
+      this.setState(
+        {
+          response_eight_yes: false,
+          response_eight_no: true
+        },
+      );
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Question_8 action={this.handler} />
+        <Question_8 
+          action={this.handler} 
+          yes={this.state.response_eight_yes}
+          no={this.state.response_eight_no}/>
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
             this.state.componentMap.set(
-              "response_eight",
-              this.state.response_eight
+              "response_eight_yes",
+              this.state.response_eight_yes
             );
-
+            this.state.componentMap.set(
+              "response_eight_no",
+              this.state.response_eight_no
+            );
             this.props.navigation.navigate("Results", {
               componentMap: this.state.componentMap
             });

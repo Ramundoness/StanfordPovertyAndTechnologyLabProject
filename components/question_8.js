@@ -1,30 +1,8 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_8 extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      question_8_selectedYes: false,
-      question_8_selectedNo: false
-    };
-  }
-
-  yesPressed() {
-    this.setState({
-      question_8_selectedYes: !this.state.question_8_selectedYes,
-      question_8_selectedNo: false
-    });
-  }
-
-  noPressed() {
-    this.setState({
-      question_8_selectedNo: !this.state.question_8_selectedNo,
-      question_8_selectedYes: false
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -32,30 +10,29 @@ class Question_8 extends Component {
         <Text style={styles.question}>
           8. Do you have more than $2,250 in savings?
         </Text>
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
-          <Text
+        <View
+          style={{
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
+        >
+          <TouchableOpacity
             style={
-              this.state.question_8_selectedYes
-                ? styles.selectedBinaryOption
-                : styles.unselectedBinaryOption
+              this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
-            //onPress={this.yesPressed.bind(this)}
             onPress={this.props.action.bind(this, true)}
           >
-            Yes
-          </Text>
-          <Text
+            <Text style={{ color: "white" }}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             style={
-              this.state.question_8_selectedNo
-                ? styles.selectedBinaryOption
-                : styles.unselectedBinaryOption
+              this.props.no ? styles.selectedButton : styles.unselectedButton
             }
-            //onPress={this.noPressed.bind(this)}
             onPress={this.props.action.bind(this, false)}
           >
-            {" "}
-            No
-          </Text>
+            <Text style={{ color: "white" }}>No</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
