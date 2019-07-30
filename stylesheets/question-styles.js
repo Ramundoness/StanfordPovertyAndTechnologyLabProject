@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     fontStyle: "italic",
-    paddingTop: 10,
+    paddingTop: 30,
     fontFamily: "montserrat"
   },
   titleFirstPage: {
@@ -61,6 +61,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10
   },
+  resultsPageText: {
+    fontFamily: "montserrat",
+    fontSize: 30,
+  },
   unselectedButton: {
     //position: "absolute",
     // bottom: 0.1,
@@ -100,6 +104,13 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 10,
     shadowOpacity: 0.25
+  },
+  numericInput: {
+    justifyContent: "center",
+    textAlign: "center",
+    fontFamily: 'montserrat',
+    fontSize: 30,
+    width: 400
   }
 });
 

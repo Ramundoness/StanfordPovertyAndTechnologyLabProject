@@ -6,6 +6,13 @@ class Question_4 extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.titleFirstPage}>
+          Let's jump ahead to your first year in college
+        </Text>
+
+        {/* empty view for border line */}
+        <View style={styles.border} />
+
         {/* Question #4 */}
         <Text style={styles.question}>
           4. Please select all of the statements that might apply to you in your
