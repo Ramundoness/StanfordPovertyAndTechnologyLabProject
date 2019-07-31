@@ -3,28 +3,6 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { styles } from "../stylesheets/question-styles";
 
 class Question_3 extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     selected_yes: false,
-  //     selected_no: false
-  //   };
-  // }
-
-  // yesPressed() {
-  //   this.setState({
-  //     selectedYes: !this.state.selected_yes,
-  //     selectedNo: false
-  //   });
-  // }
-
-  // noPressed() {
-  //   this.setState({
-  //     selectedNo: !this.state.selected_no,
-  //     selectedYes: false
-  //   });
-  // }
-
   render() {
     return (
       <View style={styles.container}>

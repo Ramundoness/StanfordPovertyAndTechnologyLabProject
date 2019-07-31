@@ -405,7 +405,11 @@ class Four extends React.Component {
         break;
       case 5:
         this.setState({
-          response_four_none: !this.state.response_four_none
+          response_four_none: !this.state.response_four_none,
+          response_four_work_study: false,
+          response_four_20_hours: false,
+          response_four_vocational: false,
+          response_four_child: false
         });
         break;
     }

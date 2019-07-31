@@ -16,8 +16,8 @@ class Results extends Component {
   render() {
     return (
         <View>
-            <Text>Pell: ${this.props.pResults}</Text>
-            <Text>SNAP: ${this.props.sResults}</Text>
+            <Text style={styles.resultsPageText}>Pell: ${this.props.pResults}</Text>
+            <Text style={styles.resultsPageText}>SNAP: ${this.props.sResults}</Text>
       </View>
     );
   }

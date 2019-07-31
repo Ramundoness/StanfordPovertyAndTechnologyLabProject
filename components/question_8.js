@@ -7,7 +7,7 @@ class Question_8 extends Component {
     return (
       <View style={styles.container}>
         {/* Question #8 */}
-        <Text style={styles.question}>
+        <Text style={styles.questionNoHeader}>
           8. Do you have more than $2,250 in savings?
         </Text>
         <View
