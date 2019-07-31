@@ -702,6 +702,7 @@ class Seven extends React.Component {
       <View style={styles.container}>
         <Question_7
           action={this.handler}
+          data={this.state.componentMap.get("fill_seven")}
           yes={this.state.response_seven_yes}
           no={this.state.response_seven_no}
         />
