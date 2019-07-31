@@ -46,6 +46,14 @@ class App extends React.Component {
   }
 }
 
+class LoadingScreen extends React.Component {
+  render() {
+    return (
+      <Text>Your content is loading!</Text>
+    )
+  }
+}
+
 class WelcomeScreen extends React.Component {
   render() {
     return (
@@ -80,7 +88,33 @@ class WelcomeScreen extends React.Component {
           >
             <Text style={{ color: "white" }}>Login</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => {
+              this.props.navigation.navigate("Register");
+            }}
+          >
+            <Text style={{ color: "white" }}>Register</Text>
+          </TouchableOpacity>
         </View>
+      </View>
+    );
+  }
+}
+
+class RegisterScreen extends React.Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Register Here</Text>
+        <TouchableOpacity
+          style={styles.buttonContainerTwo}
+          onPress={() => {
+            this.props.navigation.navigate("Help");
+          }}
+        >
+          <Text style={{ color: "white" }}>Register</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -90,6 +124,7 @@ class SplashScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text>Hello World!</Text>
         <TouchableOpacity
           style={styles.buttonContainerTwo}
           onPress={() => {
@@ -889,7 +924,9 @@ export default App;
 
 const AppSwitchNavigator = createStackNavigator(
   {
+    Loading: LoadingScreen,
     Welcome: WelcomeScreen,
+    Register: RegisterScreen,
     Help: SplashScreen,
     QuestionOne: One,
     QuestionTwo: Two,
