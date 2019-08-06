@@ -6,8 +6,14 @@ class Question_8 extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>
+          Let's think about what your income will look like in college
+        </Text>
+        {/* empty view for border line */}
+        <View style={styles.border} />
+
         {/* Question #8 */}
-        <Text style={styles.questionNoHeader}>
+        <Text style={styles.question}>
           8. Do you have more than $2,250 in savings?
         </Text>
         <View

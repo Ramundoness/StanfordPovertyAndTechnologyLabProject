@@ -288,6 +288,8 @@ class Two extends React.Component {
               "response_two_no",
               this.state.response_two_no
             );
+            // console.log("size is " + this.state.componentMap.size + 
+            //   this.state.componentMap.get("response_one_medicaid") + this.state.componentMap.get("response_one_ssi") + this.state.componentMap.get("response_one_snap") + this.state.componentMap.get("response_one_reduced") + this.state.componentMap.get("response_one_tanf") + this.state.componentMap.get("response_one_wic") + this.state.componentMap.get("response_two_yes") + this.state.componentMap.get("response_two_no"));
             if (
               (this.state.componentMap.get("response_one_medicaid") ||
                 this.state.componentMap.get("response_one_ssi") ||
@@ -298,7 +300,6 @@ class Two extends React.Component {
               this.state.componentMap.get("response_two_no")
             ) {
               //MESSAGE FOR PELL ELIGIBILITY
-              //console.log(this.state.componentMap.size);
               alert("Congrats you are eligible for $6,175 in Pell");
             } else {
               //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
@@ -378,21 +379,20 @@ class Three extends React.Component {
             );
             if (
               this.state.componentMap.size != 1 &&
-              this.state.componentMap.get("response_three_yes")
+              this.state.componentMap.get("response_three_no")
             ) {
-              //MESSAGE FOR PELL ELIGIBILITY
-              console.log(this.state.componentMap.size);
-              alert("Congrats you are eligible for $6,175 in Pell");
-            } else {
-              //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
+              this.props.navigation.navigate("Results", {
+                componentMap: this.state.componentMap
+              });
+              //MESSAGE ABOUT MUST BE AT LEAST HALF TIME FOR FOOD ASSISTANCE
               alert(
-                "pop-up message about average pell amount and info about other calculators"
+                "pop-up message about students must attending college for at least half time to be eligible for food assistance"
               );
+            } else {
+              this.props.navigation.navigate("QuestionFour", {
+                componentMap: this.state.componentMap
+              });
             }
-
-            this.props.navigation.navigate("QuestionFour", {
-              componentMap: this.state.componentMap
-            });
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -491,11 +491,11 @@ class Four extends React.Component {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
-            } else {
               //POP-UP MESSAGE ABOUT REQUIREMENT TO MEET ONE OF THE CRITERIA TO BE ELIGIBLE FOR SNAP
               alert(
                 "Pop-up message about requirement to meet one of the criteria to be eligible for SNAP"
               );
+            } else {
               this.props.navigation.navigate("QuestionFive", {
                 componentMap: this.state.componentMap
               });
@@ -594,7 +594,7 @@ class Five extends React.Component {
             // TODO: Check that all these conditions work
             if (
               this.state.componentMap.get("response_one_snap") &&
-              this.state.response_five == 1
+              this.state.componentMap.get("response_five_remain_home")
             ) {
               alert(
                 "You will continue to be counted on existing SNAP case until age 22 if you continue to live at home"
@@ -603,7 +603,7 @@ class Five extends React.Component {
                 componentMap: this.state.componentMap
               });
             } else if (
-              this.state.componentMap.get("response_five_on_campus") == 2
+              this.state.componentMap.get("response_five_on_campus")
             ) {
               alert(
                 "Some students with meal plans could be eligible for food assistance, but more information is required"
@@ -612,11 +612,8 @@ class Five extends React.Component {
                 componentMap: this.state.componentMap
               });
             } else if (
-              this.state.componentMap.get("response_five_off_campus_own") ==
-                3 ||
-              this.state.componentMap.get(
-                "response_five_off_campus_roommates"
-              ) == 4
+              this.state.componentMap.get("response_five_off_campus_own") ||
+              this.state.componentMap.get("response_five_off_campus_roommates")
             ) {
               this.props.navigation.navigate("QuestionSix", {
                 componentMap: this.state.componentMap
@@ -660,17 +657,7 @@ class Six extends React.Component {
           style={styles.buttonContainerTwo}
           onPress={() => {
             let number = parseInt(this.state.response_six, 10);
-            // console.log(parseInt(this.state.response_six, 10) - 2);
-            // console.log((parseInt(this.state.response_six, 10) - 2) * 468);
-            // console.log((parseInt(this.state.response_six, 10) - 2) * 468 + 1784);
-            console.log(number - 2);
-            console.log((number - 2) * 468);
-            console.log((number - 2) * 468 + 1784);
-
-            if (
-              this.state.response_six != "" &&
-              this.state.response_six != "0"
-            ) {
+            if (number > 0) {
               switch (number) {
                 case 1:
                   this.state.componentMap.set("fill_seven", 1326);
@@ -690,17 +677,11 @@ class Six extends React.Component {
                 "response_six",
                 this.state.response_six
               );
-
               this.props.navigation.navigate("QuestionSeven", {
                 componentMap: this.state.componentMap
               });
-              //ERASE LATER
-              console.log(this.state.componentMap.get("fill_seven"));
             } else {
-              //ADD POPUP MESSAGE HERE
               alert("You must enter a valid number of household members");
-              //ERASE LATER
-              console.log(this.state.response_six);
             }
           }}
         >
@@ -756,7 +737,7 @@ class Seven extends React.Component {
               "response_seven_no",
               this.state.response_seven_no
             );
-            if (!this.state.componentMap.get("response_seven_yes")) {
+            if (this.state.componentMap.get("response_seven_no")) {
               this.props.navigation.navigate("QuestionEight", {
                 componentMap: this.state.componentMap
               });
