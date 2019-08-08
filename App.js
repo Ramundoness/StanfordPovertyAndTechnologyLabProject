@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  ImageBackground,
-  TextInput,
-  TouchableOpacity
-} from "react-native";
+
+import { Text, View, TouchableOpacity } from "react-native";
 
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
@@ -24,15 +16,15 @@ import Question_6 from "./components/question_6";
 import Question_7 from "./components/question_7";
 import Question_8 from "./components/question_8";
 import Results from "./components/results";
-
 import HomeScreen from "./components/homescreen";
 
-import { createBottomTabNavigator } from "react-navigation";
-import { createSwitchNavigator } from "react-navigation";
-import { createDrawerNavigator } from "react-navigation";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
 import { Font } from "expo";
+
+import firebase from "firebase";
+import { firebaseConfig } from "./config";
+firebase.initializeApp(firebaseConfig);
 
 class App extends React.Component {
   componentDidMount() {
@@ -47,10 +39,26 @@ class App extends React.Component {
 }
 
 class LoadingScreen extends React.Component {
+  componentDidMount() {
+    this.checkIfLoggedIn();
+  }
+
+  checkIfLoggedIn = () => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.navigation.navigate("Help");
+      } else {
+        this.props.navigation.navigate("Welcome");
+      }
+    });
+  };
+
   render() {
     return (
-      <Text>Your content is loading!</Text>
-    )
+      <View style={styles.container}>
+        <Text>Your content is loading!</Text>
+      </View>
+    );
   }
 }
 
@@ -79,23 +87,23 @@ class WelcomeScreen extends React.Component {
             justifyContent: "center"
           }}
         >
-          <HomeScreen />
+          {/* <HomeScreen /> */}
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => {
               this.props.navigation.navigate("Help");
             }}
           >
-            <Text style={{ color: "white" }}>Login</Text>
+            <Text style={{ color: "white" }}>Sign in With Google</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => {
               this.props.navigation.navigate("Register");
             }}
           >
             <Text style={{ color: "white" }}>Register</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );
@@ -920,7 +928,7 @@ const AppSwitchNavigator = createStackNavigator(
     Results: Result
   },
   {
-    initialRouteName: "Welcome",
+    initialRouteName: "Loading",
     defaultNavigationOptions: {
       header: null
     }
