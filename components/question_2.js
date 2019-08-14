@@ -7,10 +7,10 @@ class Question_2 extends Component {
     console.log("render called");
     return (
       <View style={styles.container}>
-        <Text style={styles.titleFirstPage}>Let's talk about right now</Text>
+        {/* <Text style={styles.titleFirstPage}>Let's talk about right now</Text> */}
 
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
         <Text style={styles.question}>
           2. Do you think your parents make more than $26,000 per year?
         </Text>

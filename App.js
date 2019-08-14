@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
@@ -17,6 +17,9 @@ import Question_7 from "./components/question_7";
 import Question_8 from "./components/question_8";
 import Results from "./components/results";
 import HomeScreen from "./components/homescreen";
+
+import * as Progress from "react-native-progress";
+import { fromRight, fromLeft, fadeIn } from "react-navigation-transitions";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
@@ -39,7 +42,19 @@ class App extends React.Component {
 }
 
 class LoadingScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+  }
+
   componentDidMount() {
+    requestAnimationFrame(() => {
+      this.setState({
+        isVisible: true
+      });
+    });
     this.checkIfLoggedIn();
   }
 
@@ -54,9 +69,19 @@ class LoadingScreen extends React.Component {
   };
 
   render() {
+    if (!this.state.isVisible) {
+      return null;
+    }
+
     return (
       <View style={styles.container}>
-        <Text>Your content is loading!</Text>
+        <Progress.CircleSnail
+          size={60}
+          progress={0.5}
+          unfilledColor="#fff"
+          thickness={3}
+          borderWidth={0}
+        />
       </View>
     );
   }
@@ -88,41 +113,35 @@ class WelcomeScreen extends React.Component {
           }}
         >
           {/* <HomeScreen /> */}
+          <Text
+            style={{
+              color: "#ffffff",
+              fontSize: 32,
+              textAlign: "center",
+              marginTop: 80,
+              marginBottom: 75,
+              margin: 35,
+              backgroundColor: "transparent",
+              textShadowColor: "#000",
+              textShadowOffset: { width: -1, height: 1 },
+              textShadowRadius: 10
+            }}
+          >
+            Stanford Lab on Poverty and Technology
+          </Text>
           <TouchableOpacity
-            style={styles.buttonContainer}
+            style={styles.signInButton}
             onPress={() => {
               this.props.navigation.navigate("Help");
             }}
           >
-            <Text style={{ color: "white" }}>Sign in With Google</Text>
+            <Image
+              style={{ width: 25, height: 25, marginRight: 25 }}
+              source={require("./assets/google.png")}
+            />
+            <Text style={{ color: "#333" }}>Sign in With Google</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => {
-              this.props.navigation.navigate("Register");
-            }}
-          >
-            <Text style={{ color: "white" }}>Register</Text>
-          </TouchableOpacity> */}
         </View>
-      </View>
-    );
-  }
-}
-
-class RegisterScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Register Here</Text>
-        <TouchableOpacity
-          style={styles.buttonContainerTwo}
-          onPress={() => {
-            this.props.navigation.navigate("Help");
-          }}
-        >
-          <Text style={{ color: "white" }}>Register</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -147,6 +166,20 @@ class SplashScreen extends React.Component {
 }
 
 class One extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.11}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -161,6 +194,7 @@ class One extends React.Component {
       //componentMap: this.props.navigation.state.params.componentMap
     };
   }
+
   handler(property) {
     switch (property) {
       case 1:
@@ -240,6 +274,20 @@ class One extends React.Component {
 }
 
 class Two extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.22}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -328,6 +376,20 @@ class Two extends React.Component {
 }
 
 class Three extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.33}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -411,6 +473,20 @@ class Three extends React.Component {
 }
 
 class Four extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.44}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -518,6 +594,19 @@ class Four extends React.Component {
 }
 
 class Five extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.55}
+          width={200}
+        />
+      </View>
+    )
+  };
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -645,6 +734,20 @@ class Five extends React.Component {
 }
 
 class Six extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.66}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -720,6 +823,20 @@ class Six extends React.Component {
 }
 
 class Seven extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.77}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -783,6 +900,20 @@ class Seven extends React.Component {
 }
 
 class Eight extends React.Component {
+  static navigationOptions = {
+    headerStyle: { elevation: 0 },
+    headerRight: (
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Progress.Bar
+          style={{ flex: 1, width: 200, margin: 25 }}
+          resizeMode="contain"
+          progress={0.88}
+          width={200}
+        />
+      </View>
+    )
+  };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -930,12 +1061,38 @@ class Result extends React.Component {
 
 export default App;
 
+const handleCustomTransition = ({ scenes }) => {
+  const prevScene = scenes[scenes.length - 2];
+  const nextScene = scenes[scenes.length - 1];
+
+  // Custom transitions go there
+  if (
+    prevScene &&
+    prevScene.route.routeName === "Loading" &&
+    nextScene.route.routeName === "Help"
+  ) {
+    return fadeIn();
+  } else if (
+    prevScene &&
+    prevScene.route.routeName === "Loading" &&
+    nextScene.route.routeName === "Welcome"
+  ) {
+    return fadeIn();
+  } else if (
+    prevScene &&
+    prevScene.route.routeName === "Results" &&
+    nextScene.route.routeName === "Welcome"
+  ) {
+    return fromLeft();
+  }
+  return fromRight();
+};
+
 const AppSwitchNavigator = createStackNavigator(
   {
-    Loading: LoadingScreen,
-    Welcome: WelcomeScreen,
-    Register: RegisterScreen,
-    Help: SplashScreen,
+    Loading: { screen: LoadingScreen, navigationOptions: { header: null } },
+    Welcome: { screen: WelcomeScreen, navigationOptions: { header: null } },
+    Help: { screen: SplashScreen, navigationOptions: { header: null } },
     QuestionOne: One,
     QuestionTwo: Two,
     QuestionThree: Three,
@@ -944,13 +1101,12 @@ const AppSwitchNavigator = createStackNavigator(
     QuestionSix: Six,
     QuestionSeven: Seven,
     QuestionEight: Eight,
-    Results: Result
+    Results: { screen: Result, navigationOptions: { header: null } }
   },
   {
     initialRouteName: "Loading",
-    defaultNavigationOptions: {
-      header: null
-    }
+    headerMode: "float",
+    transitionConfig: nav => handleCustomTransition(nav)
   }
 );
 

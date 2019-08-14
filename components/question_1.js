@@ -6,10 +6,10 @@ class Question_1 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleFirstPage}>Let's talk about right now</Text>
+        {/* <Text style={styles.titleFirstPage}>Let's talk about right now</Text> */}
 
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #1 */}
         <Text style={styles.question}>
@@ -28,9 +28,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.props.ssi
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.ssi ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 2)}
         >
@@ -38,9 +36,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.props.snap
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.snap ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 3)}
         >
@@ -48,9 +44,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.props.reduced
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.reduced ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 4)}
         >
@@ -58,9 +52,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.props.tanf
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.tanf ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 5)}
         >
@@ -68,9 +60,7 @@ class Question_1 extends Component {
         </Text>
         <Text
           style={
-            this.props.wic
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.wic ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 6)}
         >

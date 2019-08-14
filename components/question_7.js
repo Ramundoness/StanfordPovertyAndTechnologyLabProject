@@ -6,11 +6,11 @@ class Question_7 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
+        {/* <Text style={styles.title}>
           Let's think about what your income will look like in college
-        </Text>
+        </Text> */}
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #7 */}
         <Text style={styles.question}>

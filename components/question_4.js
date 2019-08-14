@@ -6,12 +6,12 @@ class Question_4 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleFirstPage}>
+        {/* <Text style={styles.titleFirstPage}>
           Let's jump ahead to your first year in college
-        </Text>
+        </Text> */}
 
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #4 */}
         <Text style={styles.question}>
@@ -30,9 +30,7 @@ class Question_4 extends Component {
         </Text>
         <Text
           style={
-            this.props.work_20
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.work_20 ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 2)}
         >
@@ -50,9 +48,7 @@ class Question_4 extends Component {
         </Text>
         <Text
           style={
-            this.props.child
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.child ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 4)}
         >
@@ -60,9 +56,7 @@ class Question_4 extends Component {
         </Text>
         <Text
           style={
-            this.props.none
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.none ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 5)}
         >

@@ -6,12 +6,12 @@ class Question_3 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.titleFirstPage}>
+        {/* <Text style={styles.titleFirstPage}>
           Let's jump ahead to your first year in college
-        </Text>
+        </Text> */}
 
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #3 */}
         <Text style={styles.question}>
@@ -31,10 +31,10 @@ class Question_3 extends Component {
             //style={styles.selectedButton}
             // onPress={this.yesPressed.bind(this)}
             onPress={this.props.action.bind(this, true)}
-          // onPress={() => {
-          //   //this.yesPressed.bind(this);
-          //   this.props.action.bind(this, true);
-          // }}
+            // onPress={() => {
+            //   //this.yesPressed.bind(this);
+            //   this.props.action.bind(this, true);
+            // }}
           >
             <Text style={{ color: "white" }}>Yes</Text>
           </TouchableOpacity>
@@ -44,10 +44,10 @@ class Question_3 extends Component {
             }
             // onPress={this.noPressed.bind(this)}
             onPress={this.props.action.bind(this, false)}
-          // onPress={() => {
-          //   //this.noPressed.bind(this);
-          //   this.props.action.bind(this, false);
-          // }}
+            // onPress={() => {
+            //   //this.noPressed.bind(this);
+            //   this.props.action.bind(this, false);
+            // }}
           >
             <Text style={{ color: "white" }}>No</Text>
           </TouchableOpacity>
