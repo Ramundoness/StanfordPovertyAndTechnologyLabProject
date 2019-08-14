@@ -6,6 +6,7 @@ import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
 
 import { styles } from "./stylesheets/app-styles";
+import { Dimensions } from "react-native";
 
 import Question_1 from "./components/question_1";
 import Question_2 from "./components/question_2";
@@ -167,14 +168,20 @@ class SplashScreen extends React.Component {
 
 class One extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.11}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -235,7 +242,7 @@ class One extends React.Component {
           wic={this.state.response_one_wic}
         />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_one_medicaid",
@@ -266,7 +273,11 @@ class One extends React.Component {
             });
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -275,14 +286,20 @@ class One extends React.Component {
 
 class Two extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.22}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -334,7 +351,7 @@ class Two extends React.Component {
         />
 
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_two_yes",
@@ -368,7 +385,11 @@ class Two extends React.Component {
             });
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -1104,7 +1125,7 @@ const AppSwitchNavigator = createStackNavigator(
     Results: { screen: Result, navigationOptions: { header: null } }
   },
   {
-    initialRouteName: "Loading",
+    initialRouteName: "Help",
     headerMode: "float",
     transitionConfig: nav => handleCustomTransition(nav)
   }

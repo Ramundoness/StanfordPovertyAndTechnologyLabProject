@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "../stylesheets/question-styles";
+import { styles } from "../stylesheets/experimental-styles";
 
 class Question_3 extends Component {
   render() {
