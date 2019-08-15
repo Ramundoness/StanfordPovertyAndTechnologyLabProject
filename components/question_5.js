@@ -6,11 +6,11 @@ class Question_5 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
+        {/* <Text style={styles.title}>
           Let's think about what your household will look like in college
-        </Text>
+        </Text> */}
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #5*/}
         <Text style={styles.question}>
@@ -18,9 +18,7 @@ class Question_5 extends Component {
         </Text>
         <Text
           style={
-            this.props.home
-              ? styles.selectedOption
-              : styles.unselectedOption
+            this.props.home ? styles.selectedOption : styles.unselectedOption
           }
           onPress={this.props.action.bind(this, 1)}
         >
