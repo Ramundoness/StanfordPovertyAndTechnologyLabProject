@@ -26,6 +26,9 @@ import { fromRight, fromLeft, fadeIn } from "react-navigation-transitions";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
 import { Font } from "expo";
+import firebase from "firebase";
+import { firebaseConfig } from "./config";
+firebase.initializeApp(firebaseConfig);
 
 class App extends React.Component {
   componentDidMount() {
@@ -60,7 +63,9 @@ class LoadingScreen extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.props.navigation.navigate("Help");
+        console.log("user is: " + user)
       } else {
+        console.log("user is: " + user)
         this.props.navigation.navigate("Welcome");
       }
     });
@@ -1103,7 +1108,7 @@ const AppSwitchNavigator = createStackNavigator(
     Results: { screen: Result, navigationOptions: { header: null } }
   },
   {
-    initialRouteName: "Help",
+    initialRouteName: "Loading",
     headerMode: "float",
     transitionConfig: nav => handleCustomTransition(nav)
   }
