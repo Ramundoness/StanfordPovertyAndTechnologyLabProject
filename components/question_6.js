@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TextInput } from "react-native";
-import { styles } from "../stylesheets/question-styles";
+import { styles } from "../stylesheets/experimental-styles";
 
 class Question_6 extends Component {
   constructor(props) {
@@ -21,17 +21,21 @@ class Question_6 extends Component {
 
         {/* Question #6 */}
         <Text style={styles.question}>
-          6. How many people will live in your household and share meals
-          together?
+          How many people will live in your household and share meals together?
         </Text>
-        <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        <View
+          style={{
+            flex: 1
+          }}
+        >
           {/*<Text style={this.state.question_8_selectedYes ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.yesPressed.bind(this)}>Yes</Text>
                     <Text style={this.state.question_8_selectedNo ? styles.selectedBinaryOption : styles.unselectedBinaryOption} onPress={this.noPressed.bind(this)}>  No</Text>*/}
           <TextInput
             style={styles.numericInput}
-            placeholder="Enter number here"
+            // placeholder="Enter number here"
             editable={true}
             maxLength={2}
+            selectionColor="#fff"
             keyboardType="numeric"
             onChange={event => {
               this.props.action(event.nativeEvent.text);

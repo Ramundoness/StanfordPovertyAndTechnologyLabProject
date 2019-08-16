@@ -64,6 +64,8 @@ const styles = StyleSheet.create({
   resultsPageText: {
     fontFamily: "montserrat",
     fontSize: 30,
+    color: "white",
+    margin: 10
   },
   unselectedButton: {
     //position: "absolute",
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
   numericInput: {
     justifyContent: "center",
     textAlign: "center",
-    fontFamily: 'montserrat',
+    fontFamily: "montserrat",
     fontSize: 30,
     width: 400
   }

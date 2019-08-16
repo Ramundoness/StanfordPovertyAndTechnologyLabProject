@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "../stylesheets/question-styles";
+import { styles } from "../stylesheets/experimental-styles";
 
 class Question_8 extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
+        {/* <Text style={styles.title}>
           Let's think about what your income will look like in college
-        </Text>
+        </Text> */}
         {/* empty view for border line */}
-        <View style={styles.border} />
+        {/* <View style={styles.border} /> */}
 
         {/* Question #8 */}
         <Text style={styles.question}>
-          8. Do you have more than $2,250 in savings?
+          Do you have more than $2,250 in savings?
         </Text>
         <View
           style={{
@@ -23,22 +23,22 @@ class Question_8 extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity
+          <Text
             style={
               this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
             onPress={this.props.action.bind(this, true)}
           >
-            <Text style={{ color: "white" }}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+            Yes
+          </Text>
+          <Text
             style={
               this.props.no ? styles.selectedButton : styles.unselectedButton
             }
             onPress={this.props.action.bind(this, false)}
           >
-            <Text style={{ color: "white" }}>No</Text>
-          </TouchableOpacity>
+            No
+          </Text>
         </View>
       </View>
     );

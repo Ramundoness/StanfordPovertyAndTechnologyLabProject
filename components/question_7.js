@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "../stylesheets/question-styles";
+import { styles } from "../stylesheets/experimental-styles";
 
 class Question_7 extends Component {
   render() {
@@ -14,7 +14,7 @@ class Question_7 extends Component {
 
         {/* Question #7 */}
         <Text style={styles.question}>
-          7. Do you think your monthly household income will be more than $
+          Do you think your monthly household income will be more than $
           {this.props.data}?
         </Text>
         <View
@@ -24,22 +24,22 @@ class Question_7 extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity
+          <Text
             style={
               this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
             onPress={this.props.action.bind(this, true)}
           >
-            <Text style={{ color: "white" }}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+            Yes
+          </Text>
+          <Text
             style={
               this.props.no ? styles.selectedButton : styles.unselectedButton
             }
             onPress={this.props.action.bind(this, false)}
           >
-            <Text style={{ color: "white" }}>No</Text>
-          </TouchableOpacity>
+            No
+          </Text>
         </View>
       </View>
     );

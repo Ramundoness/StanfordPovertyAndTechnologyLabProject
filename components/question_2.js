@@ -4,7 +4,6 @@ import { styles } from "../stylesheets/experimental-styles";
 
 class Question_2 extends Component {
   render() {
-    console.log("render called");
     return (
       <View style={styles.container}>
         {/* <Text style={styles.titleFirstPage}>Let's talk about right now</Text> */}
@@ -25,7 +24,7 @@ class Question_2 extends Component {
             style={
               this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
-            onPress={this.props.action.bind(this, true)}
+            onPress={this.props.action.bind(this, 1)}
           >
             Yes
           </Text>
@@ -33,7 +32,7 @@ class Question_2 extends Component {
             style={
               this.props.no ? styles.selectedButton : styles.unselectedButton
             }
-            onPress={this.props.action.bind(this, false)}
+            onPress={this.props.action.bind(this, 2)}
           >
             No
           </Text>

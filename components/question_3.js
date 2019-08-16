@@ -15,7 +15,7 @@ class Question_3 extends Component {
 
         {/* Question #3 */}
         <Text style={styles.question}>
-          3. Do you plan to attend college at least half-time?
+          Do you plan to attend college at least half-time?
         </Text>
         <View
           style={{
@@ -24,33 +24,33 @@ class Question_3 extends Component {
             justifyContent: "center"
           }}
         >
-          <TouchableOpacity
+          <Text
             style={
               this.props.yes ? styles.selectedButton : styles.unselectedButton
             }
             //style={styles.selectedButton}
             // onPress={this.yesPressed.bind(this)}
-            onPress={this.props.action.bind(this, true)}
+            onPress={this.props.action.bind(this, 1)}
             // onPress={() => {
             //   //this.yesPressed.bind(this);
             //   this.props.action.bind(this, true);
             // }}
           >
-            <Text style={{ color: "white" }}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+            Yes
+          </Text>
+          <Text
             style={
               this.props.no ? styles.selectedButton : styles.unselectedButton
             }
             // onPress={this.noPressed.bind(this)}
-            onPress={this.props.action.bind(this, false)}
+            onPress={this.props.action.bind(this, 2)}
             // onPress={() => {
             //   //this.noPressed.bind(this);
             //   this.props.action.bind(this, false);
             // }}
           >
-            <Text style={{ color: "white" }}>No</Text>
-          </TouchableOpacity>
+            No
+          </Text>
         </View>
       </View>
     );

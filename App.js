@@ -63,9 +63,9 @@ class LoadingScreen extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.props.navigation.navigate("Help");
-        console.log("user is: " + user)
+        console.log("user is: " + user);
       } else {
-        console.log("user is: " + user)
+        console.log("user is: " + user);
         this.props.navigation.navigate("Welcome");
       }
     });
@@ -81,9 +81,10 @@ class LoadingScreen extends React.Component {
         <Progress.CircleSnail
           size={60}
           progress={0.5}
-          unfilledColor="#fff"
+          unfilledColor="#D291BC"
           thickness={3}
           borderWidth={0}
+          color="#fff"
         />
       </View>
     );
@@ -99,6 +100,7 @@ class WelcomeScreen extends React.Component {
           alignItems: "center",
           justifyContent: "center"
         }}
+        // style={styles.container}
       >
         <Video
           source={backgroundVideo}
@@ -154,14 +156,22 @@ class SplashScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello World!</Text>
+        <Text
+          style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+        >
+          Hello World!
+        </Text>
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.props.navigation.navigate("QuestionOne");
           }}
         >
-          <Text style={{ color: "white" }}>Begin</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Begin
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -317,29 +327,20 @@ class Two extends React.Component {
     };
   }
 
-  handler(result) {
-    if (result) {
-      this.setState(
-        {
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
           response_two_yes: true,
           response_two_no: false
-        },
-        () => {
-          console.log(this.state.response_two_yes);
-          console.log(this.state.response_two_no);
-        }
-      );
-    } else {
-      this.setState(
-        {
+        });
+        break;
+      case 2:
+        this.setState({
           response_two_yes: false,
           response_two_no: true
-        },
-        () => {
-          console.log(this.state.response_two_yes);
-          console.log(this.state.response_two_no);
-        }
-      );
+        });
+        break;
     }
   }
 
@@ -363,7 +364,7 @@ class Two extends React.Component {
               "response_two_no",
               this.state.response_two_no
             );
-            // console.log("size is " + this.state.componentMap.size + 
+            // console.log("size is " + this.state.componentMap.size +
             //   this.state.componentMap.get("response_one_medicaid") + this.state.componentMap.get("response_one_ssi") + this.state.componentMap.get("response_one_snap") + this.state.componentMap.get("response_one_reduced") + this.state.componentMap.get("response_one_tanf") + this.state.componentMap.get("response_one_wic") + this.state.componentMap.get("response_two_yes") + this.state.componentMap.get("response_two_no"));
             if (
               (this.state.componentMap.get("response_one_medicaid") ||
@@ -401,14 +402,20 @@ class Two extends React.Component {
 
 class Three extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.33}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -424,29 +431,20 @@ class Three extends React.Component {
     };
   }
 
-  handler(result) {
-    if (result) {
-      this.setState(
-        {
+  handler(property) {
+    switch (property) {
+      case 1:
+        this.setState({
           response_three_yes: true,
           response_three_no: false
-        },
-        () => {
-          console.log(this.state.response_three_yes);
-          console.log(this.state.response_three_no);
-        }
-      );
-    } else {
-      this.setState(
-        {
+        });
+        break;
+      case 2:
+        this.setState({
           response_three_yes: false,
           response_three_no: true
-        },
-        () => {
-          console.log(this.state.response_three_yes);
-          console.log(this.state.response_three_no);
-        }
-      );
+        });
+        break;
     }
   }
 
@@ -460,7 +458,7 @@ class Three extends React.Component {
         />
 
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_three_yes",
@@ -488,7 +486,11 @@ class Three extends React.Component {
             }
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -497,14 +499,20 @@ class Three extends React.Component {
 
 class Four extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.44}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -518,7 +526,6 @@ class Four extends React.Component {
       response_four_20_hours: false,
       response_four_vocational: false,
       response_four_child: false,
-      response_four_none: false,
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
@@ -545,15 +552,6 @@ class Four extends React.Component {
           response_four_child: !this.state.response_four_child
         });
         break;
-      case 5:
-        this.setState({
-          response_four_none: !this.state.response_four_none,
-          response_four_work_study: false,
-          response_four_20_hours: false,
-          response_four_vocational: false,
-          response_four_child: false
-        });
-        break;
     }
   }
 
@@ -566,10 +564,9 @@ class Four extends React.Component {
           work_20={this.state.response_four_20_hours}
           vocational={this.state.response_four_vocational}
           child={this.state.response_four_child}
-          none={this.state.response_four_none}
         />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_four_work_study",
@@ -587,13 +584,12 @@ class Four extends React.Component {
               "response_four_child",
               this.state.response_four_child
             );
-            this.state.componentMap.set(
-              "response_four_none",
-              this.state.response_four_none
-            );
             if (
               this.state.componentMap.size != 1 &&
-              this.state.componentMap.get("response_four_none")
+              !this.state.componentMap.get("response_four_work_study") &&
+              !this.state.componentMap.get("response_four_20_hours") &&
+              !this.state.componentMap.get("response_four_vocational") &&
+              !this.state.componentMap.get("response_four_child")
             ) {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
@@ -609,7 +605,11 @@ class Four extends React.Component {
             }
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -618,18 +618,25 @@ class Four extends React.Component {
 
 class Five extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.55}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
   };
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -692,7 +699,7 @@ class Five extends React.Component {
           off_campus_roommates={this.state.response_five_off_campus_roommates}
         />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_five_remain_home",
@@ -722,9 +729,7 @@ class Five extends React.Component {
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
-            } else if (
-              this.state.componentMap.get("response_five_on_campus")
-            ) {
+            } else if (this.state.componentMap.get("response_five_on_campus")) {
               alert(
                 "Some students with meal plans could be eligible for food assistance, but more information is required"
               );
@@ -746,7 +751,11 @@ class Five extends React.Component {
             }
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -755,14 +764,20 @@ class Five extends React.Component {
 
 class Six extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.66}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -772,7 +787,7 @@ class Six extends React.Component {
     super(props);
     this.handler = this.handler.bind(this);
     this.state = {
-      response_six: "nothing yet",
+      response_six: "",
       componentMap: this.props.navigation.state.params.componentMap
     };
   }
@@ -788,7 +803,7 @@ class Six extends React.Component {
       <View style={styles.container}>
         <Question_6 action={this.handler} />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             let number = parseInt(this.state.response_six, 10);
             if (number > 0) {
@@ -819,7 +834,11 @@ class Six extends React.Component {
             }
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -828,14 +847,20 @@ class Six extends React.Component {
 
 class Seven extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.77}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -875,7 +900,7 @@ class Seven extends React.Component {
           no={this.state.response_seven_no}
         />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_seven_yes",
@@ -896,7 +921,11 @@ class Seven extends React.Component {
             }
           }}
         >
-          <Text style={{ color: "white" }}>Next</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Next
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -905,14 +934,20 @@ class Seven extends React.Component {
 
 class Eight extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0 },
-    headerRight: (
+    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
-          style={{ flex: 1, width: 200, margin: 25 }}
+          style={{
+            flex: 1,
+            width: Math.round(Dimensions.get("window").width) - 80,
+            marginHorizontal: 40,
+            marginVertical: 25
+          }}
           resizeMode="contain"
           progress={0.88}
-          width={200}
+          color={"#fff"}
+          width={Math.round(Dimensions.get("window").width) - 80}
         />
       </View>
     )
@@ -951,7 +986,7 @@ class Eight extends React.Component {
           no={this.state.response_eight_no}
         />
         <TouchableOpacity
-          style={styles.buttonContainerTwo}
+          style={styles.buttonContainerExp}
           onPress={() => {
             this.state.componentMap.set(
               "response_eight_yes",
@@ -966,7 +1001,11 @@ class Eight extends React.Component {
             });
           }}
         >
-          <Text style={{ color: "white" }}>Finish</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Finish
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -977,86 +1016,25 @@ class Result extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      componentMap: this.props.navigation.state.params.componentMap,
-      pellResults: 0,
-      snapResults: 0
+      componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
-  componentDidMount() {
-    console.log("Result Screen Mounted Properly");
-    //console.log(this.state.componentMap.size);
-    if (
-      (this.state.componentMap.get("response_one_medicaid") ||
-        this.state.componentMap.get("response_one_ssi") ||
-        this.state.componentMap.get("response_one_snap") ||
-        this.state.componentMap.get("response_one_reduced") ||
-        this.state.componentMap.get("response_one_tanf") ||
-        this.state.componentMap.get("response_one_wic")) &&
-      this.state.componentMap.get("response_two_no")
-    ) {
-      this.setState({ pellResults: 6175 });
-      this.state.componentMap.set("pellResults", this.state.pellResults);
-    } else {
-      this.setState({ pellResults: 6195 });
-      this.state.componentMap.set("pellResults", this.state.pellResults);
-    }
-
-    if (
-      this.state.componentMap.get("response_three_yes") &&
-      (this.state.componentMap.get("response_four_work_study") ||
-        this.state.componentMap.get("response_four_20_hours") ||
-        this.state.componentMap.get("response_four_vocational") ||
-        this.state.componentMap.get("response_four_child")) &&
-      (this.state.componentMap.get("response_five_off_campus_own") ||
-        this.state.componentMap.get("response_five_off_campus_roommates")) &&
-      this.state.componentMap.get("response_seven_no")
-    ) {
-      var householdNumb = this.state.componentMap.get("response_six");
-      if (householdNumb == 1) {
-        this.setState({ snapResults: 192 * 12 });
-      } else if (householdNumb == 2) {
-        this.setState({ snapResults: 352 * 12 });
-      } else if (householdNumb == 3) {
-        this.setState({ snapResults: 504 * 12 });
-      } else if (householdNumb == 4) {
-        this.setState({ snapResults: 640 * 12 });
-      } else if (householdNumb == 5) {
-        this.setState({ snapResults: 760 * 12 });
-      } else if (householdNumb == 6) {
-        this.setState({ snapResults: 913 * 12 });
-      } else if (householdNumb == 7) {
-        this.setState({ snapResults: 1009 * 12 });
-      } else if (householdNumb == 8) {
-        this.setState({ snapResults: 1153 * 12 });
-      } else if (householdNumb > 8) {
-        var total = 1153 * 12;
-        householdNumb -= 8;
-        total = total + householdNumb * 144;
-
-        this.setState({ snapResults: total });
-      }
-    }
-  }
   render() {
-    for (var [key, value] of this.state.componentMap) {
-      console.log(key + " = " + value);
-    }
-
     return (
       <View style={styles.container}>
-        {/*<Results data={this.state.componentMap} />*/}
-        <Results
-          pResults={this.state.pellResults}
-          sResults={this.state.snapResults}
-        />
+        <Results data={this.state.componentMap} />
         <TouchableOpacity
-          style={styles.buttonContainer}
+          style={styles.buttonContainerExp}
           onPress={() => {
-            this.props.navigation.navigate("Welcome");
+            this.props.navigation.navigate("Help");
           }}
         >
-          <Text style={{ color: "white" }}>Return Home</Text>
+          <Text
+            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+          >
+            Return Home
+          </Text>
         </TouchableOpacity>
       </View>
     );
