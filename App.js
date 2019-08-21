@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import { Text, View, TouchableOpacity, Image} from "react-native";
 
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
@@ -19,11 +19,17 @@ import Question_8 from "./components/question_8";
 import Results from "./components/results";
 import HomeScreen from "./components/homescreen";
 
+import LoginScreen from "./AuthScreens/LoginScreen";
+import DashboardScreen from "./AuthScreens/DashboardScreen";
+import LoadingScreen from "./AuthScreens/LoadingScreen";
+
+
 import * as Progress from "react-native-progress";
 import { fromRight, fromLeft, fadeIn } from "react-navigation-transitions";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
+import { createSwitchNavigator } from "react-navigation";
 import { Font } from "expo";
 
 import firebase from "firebase";
@@ -38,53 +44,8 @@ class App extends React.Component {
     });
   }
   render() {
-    return <AppContainer />;
-  }
-}
-
-class LoadingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false
-    };
-  }
-
-  componentDidMount() {
-    requestAnimationFrame(() => {
-      this.setState({
-        isVisible: true
-      });
-    });
-    this.checkIfLoggedIn();
-  }
-
-  checkIfLoggedIn = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.props.navigation.navigate("Help");
-      } else {
-        this.props.navigation.navigate("Welcome");
-      }
-    });
-  };
-
-  render() {
-    if (!this.state.isVisible) {
-      return null;
-    }
-
-    return (
-      <View style={styles.container}>
-        <Progress.CircleSnail
-          size={60}
-          progress={0.5}
-          unfilledColor="#fff"
-          thickness={3}
-          borderWidth={0}
-        />
-      </View>
-    );
+    //return <AppContainer />;
+      return <AppAuthNavigator />;
   }
 }
 
@@ -1109,6 +1070,27 @@ const handleCustomTransition = ({ scenes }) => {
   return fromRight();
 };
 
+
+
+const AppSwitchNavigator = createSwitchNavigator({
+    LoadingScreen: LoadingScreen,
+    LoginScreen: LoginScreen,
+    DashboardScreen: DashboardScreen,
+
+    QuestionOne: One,
+    QuestionTwo: Two,
+    QuestionThree: Three,
+    QuestionFour: Four,
+    QuestionFive: Five,
+    QuestionSix: Six,
+    QuestionSeven: Seven,
+    QuestionEight: Eight,
+    Results: { screen: Result, navigationOptions: { header: null } }
+});
+
+const AppAuthNavigator = createAppContainer(AppSwitchNavigator);
+
+/*
 const AppSwitchNavigator = createStackNavigator(
   {
     Loading: { screen: LoadingScreen, navigationOptions: { header: null } },
@@ -1132,3 +1114,4 @@ const AppSwitchNavigator = createStackNavigator(
 );
 
 const AppContainer = createAppContainer(AppSwitchNavigator);
+*/
