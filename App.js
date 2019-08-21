@@ -26,9 +26,16 @@ import { fromRight, fromLeft, fadeIn } from "react-navigation-transitions";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
 import { Font } from "expo";
+
+
 import firebase from "firebase";
+import "firebase/firestore"
 import { firebaseConfig } from "./config";
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+var firestoreDatabase = firebase.firestore();
 
 class App extends React.Component {
   componentDidMount() {
@@ -189,19 +196,53 @@ class One extends React.Component {
     )
   };
 
+  getExistingData = async() => {
+    var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com');
+    question_1_ref.get().then(function(doc) {
+      if (doc.exists) {
+        console.log("data is: " + doc.data()["response_one_medicaid"])
+        this.state = {
+          componentMap: new Map(),
+          response_one_medicaid: doc.data()["response_one_medicaid"],
+          response_one_ssi: doc.data()["response_one_ssi"],
+          response_one_snap: doc.data()["response_one_snap"],
+          response_one_reduced: doc.data()["response_one_reduced"],
+          response_one_tanf: doc.data()["response_one_tanf"],
+          response_one_wic: doc.data()["response_one_wic"]
+          //componentMap: this.props.navigation.state.params.componentMap
+        };
+      } else {
+          console.log("Document does not exist!");
+        // return false;
+      }
+    }).catch(function (error) {
+        console.log("Error getting document: ", error);
+    });
+  }
+
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
-    this.state = {
-      componentMap: new Map(),
-      response_one_medicaid: false,
-      response_one_ssi: false,
-      response_one_snap: false,
-      response_one_reduced: false,
-      response_one_tanf: false,
-      response_one_wic: false
-      //componentMap: this.props.navigation.state.params.componentMap
-    };
+    this.ref = firestoreDatabase.collection('raymondyao28@gmail.com')
+    this.getExistingData()
+    // var question_1_values = this.getExistingData();
+    // console.log("returned array is: " + question_1_values)
+    // console.log("med: " + question_1_values.response_one_medicaid)
+    // console.log("med: " + question_1_values.response_one_ssi)
+    // console.log("med: " + question_1_values.response_one_snap)
+
+    // console.log("array is: " + Object.keys(question_1_values))
+    // console.log("med: " + question_1_values["response_one_medicaid"])
+    // this.state = {
+    //   componentMap: new Map(),
+    //   response_one_medicaid: question_1_values["response_one_medicaid"],
+    //   response_one_ssi: question_1_values["response_one_ssi"],
+    //   response_one_snap: question_1_values["response_one_snap"],
+    //   response_one_reduced: question_1_values["response_one_reduced"],
+    //   response_one_tanf: question_1_values["response_one_tanf"],
+    //   response_one_wic: question_1_values["response_one_wic"]
+    //   //componentMap: this.props.navigation.state.params.componentMap
+    // };
   }
 
   handler(property) {
@@ -273,6 +314,10 @@ class One extends React.Component {
             this.props.navigation.navigate("QuestionTwo", {
               componentMap: this.state.componentMap
             });
+            var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_1')
+            for (const [key, value] of (this.state.componentMap).entries()) {
+              question_1_ref.set({ [key]: value }, { merge: true });
+            }
           }}
         >
           <Text
