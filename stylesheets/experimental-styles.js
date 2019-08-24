@@ -3,7 +3,11 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: "#D291BC"
+    backgroundColor: "transparent"
+  },
+  container_one: {
+    flexGrow: 1,
+    backgroundColor: "transparent"
   },
   title: {
     textAlign: "center",
@@ -28,29 +32,32 @@ const styles = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginBottom: 20,
-    marginTop: 10,
+    marginTop: 75,
     color: "#fff"
   },
   unselectedOption: {
     textAlign: "center",
     justifyContent: "center",
-    borderColor: "#fff",
+    borderColor: "rgba(255, 255, 255, .6)",
     borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 8,
     marginHorizontal: 40,
+    //height: 50,
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#fff"
+    zIndex: 1,
+    color: "rgba(255, 255, 255, .6)"
   },
   selectedOption: {
-    backgroundColor: "#fff",
+    //backgroundColor: "#bbb",
     textAlign: "center",
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 2,
+    //height: 50,
     borderRadius: 10,
     paddingHorizontal: 15,
     paddingVertical: 8,
@@ -58,7 +65,26 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#D291BC"
+    zIndex: 1,
+    color: "#fff"
+  },
+  selectedText: {
+    position: "absolute",
+    bottom: 475,
+    left: 200,
+    textAlign: "center",
+    justifyContent: "center",
+    zIndex: 0,
+    color: "transparent"
+  },
+  unselectedText: {
+    position: "absolute",
+    bottom: 475,
+    left: 200,
+    textAlign: "center",
+    justifyContent: "center",
+    zIndex: 0,
+    color: "#fff"
   },
   border: {
     borderBottomColor: "black",
@@ -74,7 +100,7 @@ const styles = StyleSheet.create({
     flex: 0.4,
     textAlign: "center",
     justifyContent: "center",
-    borderColor: "#fff",
+    borderColor: "rgba(255, 255, 255, .6)",
     borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
@@ -83,11 +109,10 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#fff"
+    color: "rgba(255, 255, 255, .6)"
   },
   selectedButton: {
     flex: 0.4,
-    backgroundColor: "#fff",
     textAlign: "center",
     justifyContent: "center",
     borderColor: "#fff",
@@ -99,7 +124,7 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#D291BC"
+    color: "#fff"
   },
   // unselectedButton: {
   //   //position: "absolute",
@@ -169,7 +194,7 @@ const styles = StyleSheet.create({
   },
   unselectedOptionLong: {
     justifyContent: "center",
-    borderColor: "#fff",
+    borderColor: "rgba(255, 255, 255, .6)",
     borderWidth: 2,
     borderRadius: 10,
     paddingHorizontal: 15,
@@ -178,10 +203,9 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#fff"
+    color: "rgba(255, 255, 255, .6)"
   },
   selectedOptionLong: {
-    backgroundColor: "#fff",
     justifyContent: "center",
     borderColor: "#fff",
     borderWidth: 2,
@@ -192,7 +216,7 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat",
     fontSize: 18,
     marginVertical: 5,
-    color: "#D291BC"
+    color: "#fff"
   }
 });
 
