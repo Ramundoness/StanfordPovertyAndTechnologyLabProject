@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  ImageBackground
+} from "react-native";
 
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
@@ -63,9 +69,9 @@ class LoadingScreen extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.props.navigation.navigate("Help");
-        console.log("user is: " + user);
+        // console.log("user is: " + user);
       } else {
-        console.log("user is: " + user);
+        // console.log("user is: " + user);
         this.props.navigation.navigate("Welcome");
       }
     });
@@ -77,16 +83,21 @@ class LoadingScreen extends React.Component {
     }
 
     return (
-      <View style={styles.container}>
-        <Progress.CircleSnail
-          size={60}
-          progress={0.5}
-          unfilledColor="#D291BC"
-          thickness={3}
-          borderWidth={0}
-          color="#fff"
-        />
-      </View>
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Progress.CircleSnail
+            size={60}
+            progress={0.5}
+            unfilledColor="transparent"
+            thickness={3}
+            borderWidth={0}
+            color="#fff"
+          />
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -155,32 +166,47 @@ class WelcomeScreen extends React.Component {
 class SplashScreen extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text
-          style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
-        >
-          Hello World!
-        </Text>
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.props.navigation.navigate("QuestionOne");
-          }}
-        >
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
           <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            style={{
+              color: "white",
+              fontFamily: "montserrat",
+              fontSize: 18,
+              justifyContent: "center",
+              alignItems: "center",
+              marginHorizontal: 40,
+              textAlign: "center"
+            }}
           >
-            Begin
+            This survey will help you figure out what benefits and aid you're
+            eligible for from the Federal Government!
           </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.props.navigation.navigate("QuestionOne");
+            }}
+          >
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Begin
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class One extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -210,7 +236,6 @@ class One extends React.Component {
       response_one_reduced: false,
       response_one_tanf: false,
       response_one_wic: false
-      //componentMap: this.props.navigation.state.params.componentMap
     };
   }
 
@@ -243,62 +268,64 @@ class One extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_1
-          action={this.handler}
-          medicaid={this.state.response_one_medicaid}
-          ssi={this.state.response_one_ssi}
-          snap={this.state.response_one_snap}
-          reduced={this.state.response_one_reduced}
-          tanf={this.state.response_one_tanf}
-          wic={this.state.response_one_wic}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_one_medicaid",
-              this.state.response_one_medicaid
-            );
-            this.state.componentMap.set(
-              "response_one_ssi",
-              this.state.response_one_ssi
-            );
-            this.state.componentMap.set(
-              "response_one_snap",
-              this.state.response_one_snap
-            );
-            this.state.componentMap.set(
-              "response_one_reduced",
-              this.state.response_one_reduced
-            );
-            this.state.componentMap.set(
-              "response_one_tanf",
-              this.state.response_one_tanf
-            );
-            this.state.componentMap.set(
-              "response_one_wic",
-              this.state.response_one_wic
-            );
-            this.props.navigation.navigate("QuestionTwo", {
-              componentMap: this.state.componentMap
-            });
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_1
+            action={this.handler}
+            medicaid={this.state.response_one_medicaid}
+            ssi={this.state.response_one_ssi}
+            snap={this.state.response_one_snap}
+            reduced={this.state.response_one_reduced}
+            tanf={this.state.response_one_tanf}
+            wic={this.state.response_one_wic}
+          />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_one_medicaid",
+                this.state.response_one_medicaid
+              );
+              this.state.componentMap.set(
+                "response_one_ssi",
+                this.state.response_one_ssi
+              );
+              this.state.componentMap.set(
+                "response_one_snap",
+                this.state.response_one_snap
+              );
+              this.state.componentMap.set(
+                "response_one_reduced",
+                this.state.response_one_reduced
+              );
+              this.state.componentMap.set(
+                "response_one_tanf",
+                this.state.response_one_tanf
+              );
+              this.state.componentMap.set(
+                "response_one_wic",
+                this.state.response_one_wic
+              );
+              this.props.navigation.navigate("QuestionTwo", {
+                componentMap: this.state.componentMap
+              });
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text style={styles.nextButtonTextStyle}>Next</Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Two extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -346,63 +373,69 @@ class Two extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_2
-          action={this.handler}
-          yes={this.state.response_two_yes}
-          no={this.state.response_two_no}
-        />
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_2
+            action={this.handler}
+            yes={this.state.response_two_yes}
+            no={this.state.response_two_no}
+          />
 
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_two_yes",
-              this.state.response_two_yes
-            );
-            this.state.componentMap.set(
-              "response_two_no",
-              this.state.response_two_no
-            );
-            // console.log("size is " + this.state.componentMap.size +
-            //   this.state.componentMap.get("response_one_medicaid") + this.state.componentMap.get("response_one_ssi") + this.state.componentMap.get("response_one_snap") + this.state.componentMap.get("response_one_reduced") + this.state.componentMap.get("response_one_tanf") + this.state.componentMap.get("response_one_wic") + this.state.componentMap.get("response_two_yes") + this.state.componentMap.get("response_two_no"));
-            if (
-              (this.state.componentMap.get("response_one_medicaid") ||
-                this.state.componentMap.get("response_one_ssi") ||
-                this.state.componentMap.get("response_one_snap") ||
-                this.state.componentMap.get("response_one_reduced") ||
-                this.state.componentMap.get("response_one_tanf") ||
-                this.state.componentMap.get("response_one_wic")) &&
-              this.state.componentMap.get("response_two_no")
-            ) {
-              //MESSAGE FOR PELL ELIGIBILITY
-              alert("Congrats you are eligible for $6,175 in Pell");
-            } else {
-              //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
-              alert(
-                "pop-up message about average pell amount and info about other calculators"
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_two_yes",
+                this.state.response_two_yes
               );
-            }
+              this.state.componentMap.set(
+                "response_two_no",
+                this.state.response_two_no
+              );
+              // console.log("size is " + this.state.componentMap.size +
+              //   this.state.componentMap.get("response_one_medicaid") + this.state.componentMap.get("response_one_ssi") + this.state.componentMap.get("response_one_snap") + this.state.componentMap.get("response_one_reduced") + this.state.componentMap.get("response_one_tanf") + this.state.componentMap.get("response_one_wic") + this.state.componentMap.get("response_two_yes") + this.state.componentMap.get("response_two_no"));
+              if (
+                (this.state.componentMap.get("response_one_medicaid") ||
+                  this.state.componentMap.get("response_one_ssi") ||
+                  this.state.componentMap.get("response_one_snap") ||
+                  this.state.componentMap.get("response_one_reduced") ||
+                  this.state.componentMap.get("response_one_tanf") ||
+                  this.state.componentMap.get("response_one_wic")) &&
+                this.state.componentMap.get("response_two_no")
+              ) {
+                //MESSAGE FOR PELL ELIGIBILITY
+                alert("Congrats you are eligible for $6,175 in Pell");
+              } else {
+                //MESSAGE ABOUT AVERAGE PELL AMOUNT AND INFO ABOUT OTHER CALCULATORS
+                alert(
+                  "pop-up message about average pell amount and info about other calculators"
+                );
+              }
 
-            this.props.navigation.navigate("QuestionThree", {
-              componentMap: this.state.componentMap
-            });
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+              this.props.navigation.navigate("QuestionThree", {
+                componentMap: this.state.componentMap
+              });
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Three extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -450,56 +483,62 @@ class Three extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_3
-          action={this.handler}
-          yes={this.state.response_three_yes}
-          no={this.state.response_three_no}
-        />
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_3
+            action={this.handler}
+            yes={this.state.response_three_yes}
+            no={this.state.response_three_no}
+          />
 
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_three_yes",
-              this.state.response_three_yes
-            );
-            this.state.componentMap.set(
-              "response_three_no",
-              this.state.response_three_no
-            );
-            if (
-              this.state.componentMap.size != 1 &&
-              this.state.componentMap.get("response_three_no")
-            ) {
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
-              //MESSAGE ABOUT MUST BE AT LEAST HALF TIME FOR FOOD ASSISTANCE
-              alert(
-                "pop-up message about students must attending college for at least half time to be eligible for food assistance"
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_three_yes",
+                this.state.response_three_yes
               );
-            } else {
-              this.props.navigation.navigate("QuestionFour", {
-                componentMap: this.state.componentMap
-              });
-            }
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+              this.state.componentMap.set(
+                "response_three_no",
+                this.state.response_three_no
+              );
+              if (
+                this.state.componentMap.size != 1 &&
+                this.state.componentMap.get("response_three_no")
+              ) {
+                this.props.navigation.navigate("Results", {
+                  componentMap: this.state.componentMap
+                });
+                //MESSAGE ABOUT MUST BE AT LEAST HALF TIME FOR FOOD ASSISTANCE
+                alert(
+                  "pop-up message about students must attending college for at least half time to be eligible for food assistance"
+                );
+              } else {
+                this.props.navigation.navigate("QuestionFour", {
+                  componentMap: this.state.componentMap
+                });
+              }
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Four extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -557,68 +596,74 @@ class Four extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_4
-          action={this.handler}
-          work_study={this.state.response_four_work_study}
-          work_20={this.state.response_four_20_hours}
-          vocational={this.state.response_four_vocational}
-          child={this.state.response_four_child}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_four_work_study",
-              this.state.response_four_work_study
-            );
-            this.state.componentMap.set(
-              "response_four_20_hours",
-              this.state.response_four_20_hours
-            );
-            this.state.componentMap.set(
-              "response_four_vocational",
-              this.state.response_four_vocational
-            );
-            this.state.componentMap.set(
-              "response_four_child",
-              this.state.response_four_child
-            );
-            if (
-              this.state.componentMap.size != 1 &&
-              !this.state.componentMap.get("response_four_work_study") &&
-              !this.state.componentMap.get("response_four_20_hours") &&
-              !this.state.componentMap.get("response_four_vocational") &&
-              !this.state.componentMap.get("response_four_child")
-            ) {
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
-              //POP-UP MESSAGE ABOUT REQUIREMENT TO MEET ONE OF THE CRITERIA TO BE ELIGIBLE FOR SNAP
-              alert(
-                "Pop-up message about requirement to meet one of the criteria to be eligible for SNAP"
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_4
+            action={this.handler}
+            work_study={this.state.response_four_work_study}
+            work_20={this.state.response_four_20_hours}
+            vocational={this.state.response_four_vocational}
+            child={this.state.response_four_child}
+          />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_four_work_study",
+                this.state.response_four_work_study
               );
-            } else {
-              this.props.navigation.navigate("QuestionFive", {
-                componentMap: this.state.componentMap
-              });
-            }
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+              this.state.componentMap.set(
+                "response_four_20_hours",
+                this.state.response_four_20_hours
+              );
+              this.state.componentMap.set(
+                "response_four_vocational",
+                this.state.response_four_vocational
+              );
+              this.state.componentMap.set(
+                "response_four_child",
+                this.state.response_four_child
+              );
+              if (
+                this.state.componentMap.size != 1 &&
+                !this.state.componentMap.get("response_four_work_study") &&
+                !this.state.componentMap.get("response_four_20_hours") &&
+                !this.state.componentMap.get("response_four_vocational") &&
+                !this.state.componentMap.get("response_four_child")
+              ) {
+                this.props.navigation.navigate("Results", {
+                  componentMap: this.state.componentMap
+                });
+                //POP-UP MESSAGE ABOUT REQUIREMENT TO MEET ONE OF THE CRITERIA TO BE ELIGIBLE FOR SNAP
+                alert(
+                  "Pop-up message about requirement to meet one of the criteria to be eligible for SNAP"
+                );
+              } else {
+                this.props.navigation.navigate("QuestionFive", {
+                  componentMap: this.state.componentMap
+                });
+              }
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Five extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -690,81 +735,91 @@ class Five extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_5
-          action={this.handler}
-          home={this.state.response_five_remain_home}
-          on_campus={this.state.response_five_on_campus}
-          off_campus_own={this.state.response_five_off_campus_own}
-          off_campus_roommates={this.state.response_five_off_campus_roommates}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_five_remain_home",
-              this.state.response_five_remain_home
-            );
-            this.state.componentMap.set(
-              "response_five_on_campus",
-              this.state.response_five_on_campus
-            );
-            this.state.componentMap.set(
-              "response_five_off_campus_own",
-              this.state.response_five_off_campus_own
-            );
-            this.state.componentMap.set(
-              "response_five_off_campus_roommates",
-              this.state.response_five_off_campus_roommates
-            );
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_5
+            action={this.handler}
+            home={this.state.response_five_remain_home}
+            on_campus={this.state.response_five_on_campus}
+            off_campus_own={this.state.response_five_off_campus_own}
+            off_campus_roommates={this.state.response_five_off_campus_roommates}
+          />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_five_remain_home",
+                this.state.response_five_remain_home
+              );
+              this.state.componentMap.set(
+                "response_five_on_campus",
+                this.state.response_five_on_campus
+              );
+              this.state.componentMap.set(
+                "response_five_off_campus_own",
+                this.state.response_five_off_campus_own
+              );
+              this.state.componentMap.set(
+                "response_five_off_campus_roommates",
+                this.state.response_five_off_campus_roommates
+              );
 
-            // TODO: Check that all these conditions work
-            if (
-              this.state.componentMap.get("response_one_snap") &&
-              this.state.componentMap.get("response_five_remain_home")
-            ) {
-              alert(
-                "You will continue to be counted on existing SNAP case until age 22 if you continue to live at home"
-              );
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
-            } else if (this.state.componentMap.get("response_five_on_campus")) {
-              alert(
-                "Some students with meal plans could be eligible for food assistance, but more information is required"
-              );
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
-            } else if (
-              this.state.componentMap.get("response_five_off_campus_own") ||
-              this.state.componentMap.get("response_five_off_campus_roommates")
-            ) {
-              this.props.navigation.navigate("QuestionSix", {
-                componentMap: this.state.componentMap
-              });
-            } else {
-              //CHECK WITH MATT/DENISE: CASES FOR NON "C" FOR #1 AND "A" FOR #5 GO TO RESULTS?
-              this.props.navigation.navigate("QuestionSix", {
-                componentMap: this.state.componentMap
-              });
-            }
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+              // TODO: Check that all these conditions work
+              if (
+                this.state.componentMap.get("response_one_snap") &&
+                this.state.componentMap.get("response_five_remain_home")
+              ) {
+                alert(
+                  "You will continue to be counted on existing SNAP case until age 22 if you continue to live at home"
+                );
+                this.props.navigation.navigate("Results", {
+                  componentMap: this.state.componentMap
+                });
+              } else if (
+                this.state.componentMap.get("response_five_on_campus")
+              ) {
+                alert(
+                  "Some students with meal plans could be eligible for food assistance, but more information is required"
+                );
+                this.props.navigation.navigate("Results", {
+                  componentMap: this.state.componentMap
+                });
+              } else if (
+                this.state.componentMap.get("response_five_off_campus_own") ||
+                this.state.componentMap.get(
+                  "response_five_off_campus_roommates"
+                )
+              ) {
+                this.props.navigation.navigate("QuestionSix", {
+                  componentMap: this.state.componentMap
+                });
+              } else {
+                //CHECK WITH MATT/DENISE: CASES FOR NON "C" FOR #1 AND "A" FOR #5 GO TO RESULTS?
+                this.props.navigation.navigate("QuestionSix", {
+                  componentMap: this.state.componentMap
+                });
+              }
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Six extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -800,54 +855,60 @@ class Six extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_6 action={this.handler} />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            let number = parseInt(this.state.response_six, 10);
-            if (number > 0) {
-              switch (number) {
-                case 1:
-                  this.state.componentMap.set("fill_seven", 1326);
-                  break;
-                case 2:
-                  this.state.componentMap.set("fill_seven", 1784);
-                  break;
-                default:
-                  this.state.componentMap.set(
-                    "fill_seven",
-                    (number - 2) * 468 + 1784
-                  );
-                  break;
-              }
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_6 action={this.handler} />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              let number = parseInt(this.state.response_six, 10);
+              if (number > 0) {
+                switch (number) {
+                  case 1:
+                    this.state.componentMap.set("fill_seven", 1326);
+                    break;
+                  case 2:
+                    this.state.componentMap.set("fill_seven", 1784);
+                    break;
+                  default:
+                    this.state.componentMap.set(
+                      "fill_seven",
+                      (number - 2) * 468 + 1784
+                    );
+                    break;
+                }
 
-              this.state.componentMap.set(
-                "response_six",
-                this.state.response_six
-              );
-              this.props.navigation.navigate("QuestionSeven", {
-                componentMap: this.state.componentMap
-              });
-            } else {
-              alert("You must enter a valid number of household members");
-            }
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+                this.state.componentMap.set(
+                  "response_six",
+                  this.state.response_six
+                );
+                this.props.navigation.navigate("QuestionSeven", {
+                  componentMap: this.state.componentMap
+                });
+              } else {
+                alert("You must enter a valid number of household members");
+              }
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Seven extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -892,49 +953,55 @@ class Seven extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_7
-          action={this.handler}
-          data={this.state.componentMap.get("fill_seven")}
-          yes={this.state.response_seven_yes}
-          no={this.state.response_seven_no}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_seven_yes",
-              this.state.response_seven_yes
-            );
-            this.state.componentMap.set(
-              "response_seven_no",
-              this.state.response_seven_no
-            );
-            if (this.state.componentMap.get("response_seven_no")) {
-              this.props.navigation.navigate("QuestionEight", {
-                componentMap: this.state.componentMap
-              });
-            } else {
-              this.props.navigation.navigate("Results", {
-                componentMap: this.state.componentMap
-              });
-            }
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_7
+            action={this.handler}
+            data={this.state.componentMap.get("fill_seven")}
+            yes={this.state.response_seven_yes}
+            no={this.state.response_seven_no}
+          />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_seven_yes",
+                this.state.response_seven_yes
+              );
+              this.state.componentMap.set(
+                "response_seven_no",
+                this.state.response_seven_no
+              );
+              if (this.state.componentMap.get("response_seven_no")) {
+                this.props.navigation.navigate("QuestionEight", {
+                  componentMap: this.state.componentMap
+                });
+              } else {
+                this.props.navigation.navigate("Results", {
+                  componentMap: this.state.componentMap
+                });
+              }
+            }}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
 
 class Eight extends React.Component {
   static navigationOptions = {
-    headerStyle: { elevation: 0, backgroundColor: "#D291BC" },
+    headerStyle: { elevation: 0, backgroundColor: "transparent" },
+    headerTransparent: true,
     headerLeft: (
       <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Progress.Bar
@@ -979,35 +1046,40 @@ class Eight extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Question_8
-          action={this.handler}
-          yes={this.state.response_eight_yes}
-          no={this.state.response_eight_no}
-        />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.state.componentMap.set(
-              "response_eight_yes",
-              this.state.response_eight_yes
-            );
-            this.state.componentMap.set(
-              "response_eight_no",
-              this.state.response_eight_no
-            );
-            this.props.navigation.navigate("Results", {
-              componentMap: this.state.componentMap
-            });
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          <Question_8
+            action={this.handler}
+            yes={this.state.response_eight_yes}
+            no={this.state.response_eight_no}
+          />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.state.componentMap.set(
+                "response_eight_yes",
+                this.state.response_eight_yes
+              );
+              this.state.componentMap.set(
+                "response_eight_no",
+                this.state.response_eight_no
+              );
+              this.props.navigation.navigate("Results", {
+                componentMap: this.state.componentMap
+              });
+            }}
           >
-            Finish
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Finish
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }
@@ -1022,21 +1094,27 @@ class Result extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Results data={this.state.componentMap} />
-        <TouchableOpacity
-          style={styles.buttonContainerExp}
-          onPress={() => {
-            this.props.navigation.navigate("Help");
-          }}
-        >
-          <Text
-            style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+      <ImageBackground
+        style={styles.imageBackgroundStyle}
+        source={require("./assets/background_one.jpg")}
+      >
+        <View style={styles.filterBackgroundStyle}>
+          {/* <View style={styles.container}> */}
+          <Results data={this.state.componentMap} />
+          <TouchableOpacity
+            style={styles.nextButtonContainerStyle}
+            onPress={() => {
+              this.props.navigation.navigate("Help");
+            }}
           >
-            Return Home
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
+            >
+              Return Home
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ImageBackground>
     );
   }
 }

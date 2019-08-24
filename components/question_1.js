@@ -7,7 +7,7 @@ class Question_1 extends Component {
     return (
       <View
         //source={require("../assets/background_one.jpg")}
-        style={styles.container}
+        style={styles.container_one}
       >
         {/* <Text style={styles.titleFirstPage}>Let's talk about right now</Text> */}
 
@@ -29,6 +29,14 @@ class Question_1 extends Component {
         >
           Medicaid
         </Text>
+        {/* <Text
+          style={
+            this.props.medicaid ? styles.selectedText : styles.unselectedText
+          }
+          onPress={this.props.action.bind(this, 1)}
+        >
+          Medicaid
+        </Text> */}
         <Text
           style={
             this.props.ssi ? styles.selectedOption : styles.unselectedOption
