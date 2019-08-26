@@ -33,10 +33,15 @@ import { createStackNavigator } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
 import { Font } from "expo";
 
-
 import firebase from "firebase";
+import "firebase/firestore"
+
 import { firebaseConfig } from "./config";
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+var firestoreDatabase = firebase.firestore();
 
 class App extends React.Component {
   componentDidMount() {
@@ -150,36 +155,35 @@ class One extends React.Component {
     )
   };
 
-<<<<<<< HEAD
-  getExistingData = async() => {
-    var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com');
-    question_1_ref.get().then(function(doc) {
-      if (doc.exists) {
-        console.log("data is: " + doc.data()["response_one_medicaid"])
-        this.state = {
-          componentMap: new Map(),
-          response_one_medicaid: doc.data()["response_one_medicaid"],
-          response_one_ssi: doc.data()["response_one_ssi"],
-          response_one_snap: doc.data()["response_one_snap"],
-          response_one_reduced: doc.data()["response_one_reduced"],
-          response_one_tanf: doc.data()["response_one_tanf"],
-          response_one_wic: doc.data()["response_one_wic"]
-          //componentMap: this.props.navigation.state.params.componentMap
-        };
-      } else {
-          console.log("Document does not exist!");
-        // return false;
-      }
-    }).catch(function (error) {
-        console.log("Error getting document: ", error);
-    });
-  }
+  // getExistingData = async() => {
+  //   var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com');
+  //   question_1_ref.get().then(function(doc) {
+  //     if (doc.exists) {
+  //       console.log("data is: " + doc.data()["response_one_medicaid"])
+  //       this.state = {
+  //         componentMap: new Map(),
+  //         response_one_medicaid: doc.data()["response_one_medicaid"],
+  //         response_one_ssi: doc.data()["response_one_ssi"],
+  //         response_one_snap: doc.data()["response_one_snap"],
+  //         response_one_reduced: doc.data()["response_one_reduced"],
+  //         response_one_tanf: doc.data()["response_one_tanf"],
+  //         response_one_wic: doc.data()["response_one_wic"]
+  //         //componentMap: this.props.navigation.state.params.componentMap
+  //       };
+  //     } else {
+  //         console.log("Document does not exist!");
+  //       // return false;
+  //     }
+  //   }).catch(function (error) {
+  //       console.log("Error getting document: ", error);
+  //   });
+  // }
 
-  constructor(props) {
-    super(props);
-    this.handler = this.handler.bind(this);
-    this.ref = firestoreDatabase.collection('raymondyao28@gmail.com')
-    this.getExistingData()
+  // constructor(props) {
+  //   super(props);
+  //   this.handler = this.handler.bind(this);
+  //   this.ref = firestoreDatabase.collection('raymondyao28@gmail.com')
+  //   this.getExistingData()
     // var question_1_values = this.getExistingData();
     // console.log("returned array is: " + question_1_values)
     // console.log("med: " + question_1_values.response_one_medicaid)
@@ -198,7 +202,6 @@ class One extends React.Component {
     //   response_one_wic: question_1_values["response_one_wic"]
     //   //componentMap: this.props.navigation.state.params.componentMap
     // };
-=======
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -212,7 +215,6 @@ class One extends React.Component {
       response_one_wic: false
       //componentMap: this.props.navigation.state.params.componentMap
     };
->>>>>>> parent of 317f902... Write to cloud firestore database
   }
 
   handler(property) {
@@ -284,13 +286,11 @@ class One extends React.Component {
             this.props.navigation.navigate("QuestionTwo", {
               componentMap: this.state.componentMap
             });
-<<<<<<< HEAD
             var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_1')
             for (const [key, value] of (this.state.componentMap).entries()) {
               question_1_ref.set({ [key]: value }, { merge: true });
             }
-=======
->>>>>>> parent of 317f902... Write to cloud firestore database
+
           }}
         >
           <Text
@@ -401,6 +401,10 @@ class Two extends React.Component {
               );
             }
 
+            var question_2_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_2')
+            question_2_ref.set({ "response_two_yes": this.state.response_two_yes }, { merge: true });
+            question_2_ref.set({ "response_two_no": this.state.response_two_no }, { merge: true });
+
             this.props.navigation.navigate("QuestionThree", {
               componentMap: this.state.componentMap
             });
@@ -488,6 +492,11 @@ class Three extends React.Component {
               "response_three_no",
               this.state.response_three_no
             );
+
+            var question_3_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_3')
+            question_3_ref.set({ "response_three_yes": this.state.response_three_yes }, { merge: true });
+            question_3_ref.set({ "response_three_no": this.state.response_three_no }, { merge: true });
+
             if (
               this.state.componentMap.size != 1 &&
               this.state.componentMap.get("response_three_no")
@@ -504,13 +513,6 @@ class Three extends React.Component {
                 componentMap: this.state.componentMap
               });
             }
-<<<<<<< HEAD
-=======
-
-            this.props.navigation.navigate("QuestionFour", {
-              componentMap: this.state.componentMap
-            });
->>>>>>> parent of 317f902... Write to cloud firestore database
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -616,6 +618,14 @@ class Four extends React.Component {
               "response_four_none",
               this.state.response_four_none
             );
+
+            var question_4_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_4')
+            question_4_ref.set({ "response_four_work_study": this.state.response_four_work_study }, { merge: true });
+            question_4_ref.set({ "response_four_20_hours": this.state.response_four_20_hours }, { merge: true });
+            question_4_ref.set({ "response_four_vocational": this.state.response_four_vocational }, { merge: true });
+            question_4_ref.set({ "response_four_child": this.state.response_four_child }, { merge: true });
+            question_4_ref.set({ "response_four_none": this.state.response_four_none }, { merge: true });
+
             if (
               this.state.componentMap.size != 1 &&
               this.state.componentMap.get("response_four_none")
@@ -736,6 +746,13 @@ class Five extends React.Component {
               this.state.response_five_off_campus_roommates
             );
 
+
+            var question_5_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_5')
+            question_5_ref.set({ "response_five_remain_home": this.state.response_five_remain_home }, { merge: true });
+            question_5_ref.set({ "response_five_on_campus": this.state.response_five_on_campus }, { merge: true });
+            question_5_ref.set({ "response_five_off_campus_own": this.state.response_five_off_campus_own }, { merge: true });
+            question_5_ref.set({ "response_five_off_campus_roommates": this.state.response_five_off_campus_roommates }, { merge: true });
+
             // TODO: Check that all these conditions work
             if (
               this.state.componentMap.get("response_one_snap") &&
@@ -757,16 +774,8 @@ class Five extends React.Component {
                 componentMap: this.state.componentMap
               });
             } else if (
-<<<<<<< HEAD
               this.state.componentMap.get("response_five_off_campus_own") ||
               this.state.componentMap.get("response_five_off_campus_roommates")
-=======
-              this.state.componentMap.get("response_five_off_campus_own") ==
-                3 ||
-              this.state.componentMap.get(
-                "response_five_off_campus_roommates"
-              ) == 4
->>>>>>> parent of 317f902... Write to cloud firestore database
             ) {
               this.props.navigation.navigate("QuestionSix", {
                 componentMap: this.state.componentMap
@@ -840,14 +849,13 @@ class Six extends React.Component {
                   break;
               }
 
+              var question_6_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_6')
+              question_6_ref.set({ "response_six": this.state.response_six }, { merge: true });
+
               this.state.componentMap.set(
                 "response_six",
                 this.state.response_six
               );
-<<<<<<< HEAD
-=======
-
->>>>>>> parent of 317f902... Write to cloud firestore database
               this.props.navigation.navigate("QuestionSeven", {
                 componentMap: this.state.componentMap
               });
@@ -922,11 +930,12 @@ class Seven extends React.Component {
               "response_seven_no",
               this.state.response_seven_no
             );
-<<<<<<< HEAD
-            if (this.state.componentMap.get("response_seven_no")) {
-=======
+
+            var question_7_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_7')
+            question_7_ref.set({ "response_seven_yes": this.state.response_seven_yes }, { merge: true });
+            question_7_ref.set({ "response_seven_no": this.state.response_seven_no }, { merge: true });
+
             if (!this.state.componentMap.get("response_seven_yes")) {
->>>>>>> parent of 317f902... Write to cloud firestore database
               this.props.navigation.navigate("QuestionEight", {
                 componentMap: this.state.componentMap
               });
@@ -1002,6 +1011,11 @@ class Eight extends React.Component {
               "response_eight_no",
               this.state.response_eight_no
             );
+
+            var question_8_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_8')
+            question_8_ref.set({ "response_eight_yes": this.state.response_eight_yes }, { merge: true });
+            question_8_ref.set({ "response_eight_no": this.state.response_eight_no }, { merge: true });
+
             this.props.navigation.navigate("Results", {
               componentMap: this.state.componentMap
             });

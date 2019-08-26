@@ -8,11 +8,7 @@
   },
   "dependencies": {
     "expo": "^32.0.0",
-<<<<<<< HEAD
-    "firebase": "^6.3.5",
-=======
     "firebase": "^6.4.0",
->>>>>>> 07cda6d19a8d9bdf0b7116aa56023c69c6c268e4
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-datepicker": "^1.7.2",
