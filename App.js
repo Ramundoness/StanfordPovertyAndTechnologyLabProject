@@ -35,13 +35,8 @@ import { Font } from "expo";
 
 
 import firebase from "firebase";
-import "firebase/firestore"
 import { firebaseConfig } from "./config";
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-
-var firestoreDatabase = firebase.firestore();
+firebase.initializeApp(firebaseConfig);
 
 class App extends React.Component {
   componentDidMount() {
@@ -155,6 +150,7 @@ class One extends React.Component {
     )
   };
 
+<<<<<<< HEAD
   getExistingData = async() => {
     var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com');
     question_1_ref.get().then(function(doc) {
@@ -202,6 +198,21 @@ class One extends React.Component {
     //   response_one_wic: question_1_values["response_one_wic"]
     //   //componentMap: this.props.navigation.state.params.componentMap
     // };
+=======
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+    this.state = {
+      componentMap: new Map(),
+      response_one_medicaid: false,
+      response_one_ssi: false,
+      response_one_snap: false,
+      response_one_reduced: false,
+      response_one_tanf: false,
+      response_one_wic: false
+      //componentMap: this.props.navigation.state.params.componentMap
+    };
+>>>>>>> parent of 317f902... Write to cloud firestore database
   }
 
   handler(property) {
@@ -273,10 +284,13 @@ class One extends React.Component {
             this.props.navigation.navigate("QuestionTwo", {
               componentMap: this.state.componentMap
             });
+<<<<<<< HEAD
             var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_1')
             for (const [key, value] of (this.state.componentMap).entries()) {
               question_1_ref.set({ [key]: value }, { merge: true });
             }
+=======
+>>>>>>> parent of 317f902... Write to cloud firestore database
           }}
         >
           <Text
@@ -490,6 +504,13 @@ class Three extends React.Component {
                 componentMap: this.state.componentMap
               });
             }
+<<<<<<< HEAD
+=======
+
+            this.props.navigation.navigate("QuestionFour", {
+              componentMap: this.state.componentMap
+            });
+>>>>>>> parent of 317f902... Write to cloud firestore database
           }}
         >
           <Text style={{ color: "white" }}>Next</Text>
@@ -736,8 +757,16 @@ class Five extends React.Component {
                 componentMap: this.state.componentMap
               });
             } else if (
+<<<<<<< HEAD
               this.state.componentMap.get("response_five_off_campus_own") ||
               this.state.componentMap.get("response_five_off_campus_roommates")
+=======
+              this.state.componentMap.get("response_five_off_campus_own") ==
+                3 ||
+              this.state.componentMap.get(
+                "response_five_off_campus_roommates"
+              ) == 4
+>>>>>>> parent of 317f902... Write to cloud firestore database
             ) {
               this.props.navigation.navigate("QuestionSix", {
                 componentMap: this.state.componentMap
@@ -815,6 +844,10 @@ class Six extends React.Component {
                 "response_six",
                 this.state.response_six
               );
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 317f902... Write to cloud firestore database
               this.props.navigation.navigate("QuestionSeven", {
                 componentMap: this.state.componentMap
               });
@@ -889,7 +922,11 @@ class Seven extends React.Component {
               "response_seven_no",
               this.state.response_seven_no
             );
+<<<<<<< HEAD
             if (this.state.componentMap.get("response_seven_no")) {
+=======
+            if (!this.state.componentMap.get("response_seven_yes")) {
+>>>>>>> parent of 317f902... Write to cloud firestore database
               this.props.navigation.navigate("QuestionEight", {
                 componentMap: this.state.componentMap
               });
