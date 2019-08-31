@@ -28,7 +28,7 @@ class LoginScreen extends Component {
                     googleUser.idToken, googleUser.accessToken);
                 // Sign in with credential from the Google user.
                 firebase.auth().signInWithCredential(credential).then(function (result) {
-                    if (result.additionalUserInfo.isNewUser) {
+                    /*if (result.additionalUserInfo.isNewUser) {
                         firebase.database().ref('/users/' + result.user.uid).set({
                             gmail: result.user.email,
                             profile_picture: result.additionalUserInfo.profile.picture,
@@ -42,7 +42,7 @@ class LoginScreen extends Component {
                         firebase.database().ref('/users/' + result.user.uid).update({
                             last_logged_in: Date.now()
                         });
-                    }
+                    }*/
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
