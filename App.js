@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  ImageBackground
-} from "react-native";
+import { Text, View, TouchableOpacity, Image, ImageBackground } from "react-native";
 
 import { Video } from "expo";
 import backgroundVideo from "./assets/final.mp4";
@@ -24,17 +18,30 @@ import Question_7 from "./components/question_7";
 import Question_8 from "./components/question_8";
 import Results from "./components/results";
 
-import HomeScreen from "./components/homescreen";
+import HomeScreen from "./AuthScreens/HomeScreen";
+
+import LoginScreen from "./AuthScreens/LoginScreen";
+import DashboardScreen from "./AuthScreens/DashboardScreen";
+import LoadingScreen from "./AuthScreens/LoadingScreen";
+
 
 import * as Progress from "react-native-progress";
 import { fromRight, fromLeft, fadeIn } from "react-navigation-transitions";
 
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation";
+import { createSwitchNavigator } from "react-navigation";
 import { Font } from "expo";
+
 import firebase from "firebase";
+import "firebase/firestore"
+
 import { firebaseConfig } from "./config";
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+var firestoreDatabase = firebase.firestore();
 
 class App extends React.Component {
   componentDidMount() {
@@ -44,61 +51,8 @@ class App extends React.Component {
     });
   }
   render() {
-    return <AppContainer />;
-  }
-}
-
-class LoadingScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isVisible: false
-    };
-  }
-
-  componentDidMount() {
-    requestAnimationFrame(() => {
-      this.setState({
-        isVisible: true
-      });
-    });
-    this.checkIfLoggedIn();
-  }
-
-  checkIfLoggedIn = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.props.navigation.navigate("Help");
-        // console.log("user is: " + user);
-      } else {
-        // console.log("user is: " + user);
-        this.props.navigation.navigate("Welcome");
-      }
-    });
-  };
-
-  render() {
-    if (!this.state.isVisible) {
-      return null;
-    }
-
-    return (
-      <ImageBackground
-        style={styles.imageBackgroundStyle}
-        source={require("./assets/background_one.jpg")}
-      >
-        <View style={styles.filterBackgroundStyle}>
-          <Progress.CircleSnail
-            size={60}
-            progress={0.5}
-            unfilledColor="transparent"
-            thickness={3}
-            borderWidth={0}
-            color="#fff"
-          />
-        </View>
-      </ImageBackground>
-    );
+    //return <AppContainer />;
+      return <AppAuthNavigator />;
   }
 }
 
@@ -225,6 +179,53 @@ class One extends React.Component {
     )
   };
 
+  // getExistingData = async() => {
+  //   var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com');
+  //   question_1_ref.get().then(function(doc) {
+  //     if (doc.exists) {
+  //       console.log("data is: " + doc.data()["response_one_medicaid"])
+  //       this.state = {
+  //         componentMap: new Map(),
+  //         response_one_medicaid: doc.data()["response_one_medicaid"],
+  //         response_one_ssi: doc.data()["response_one_ssi"],
+  //         response_one_snap: doc.data()["response_one_snap"],
+  //         response_one_reduced: doc.data()["response_one_reduced"],
+  //         response_one_tanf: doc.data()["response_one_tanf"],
+  //         response_one_wic: doc.data()["response_one_wic"]
+  //         //componentMap: this.props.navigation.state.params.componentMap
+  //       };
+  //     } else {
+  //         console.log("Document does not exist!");
+  //       // return false;
+  //     }
+  //   }).catch(function (error) {
+  //       console.log("Error getting document: ", error);
+  //   });
+  // }
+
+  // constructor(props) {
+  //   super(props);
+  //   this.handler = this.handler.bind(this);
+  //   this.ref = firestoreDatabase.collection('raymondyao28@gmail.com')
+  //   this.getExistingData()
+    // var question_1_values = this.getExistingData();
+    // console.log("returned array is: " + question_1_values)
+    // console.log("med: " + question_1_values.response_one_medicaid)
+    // console.log("med: " + question_1_values.response_one_ssi)
+    // console.log("med: " + question_1_values.response_one_snap)
+
+    // console.log("array is: " + Object.keys(question_1_values))
+    // console.log("med: " + question_1_values["response_one_medicaid"])
+    // this.state = {
+    //   componentMap: new Map(),
+    //   response_one_medicaid: question_1_values["response_one_medicaid"],
+    //   response_one_ssi: question_1_values["response_one_ssi"],
+    //   response_one_snap: question_1_values["response_one_snap"],
+    //   response_one_reduced: question_1_values["response_one_reduced"],
+    //   response_one_tanf: question_1_values["response_one_tanf"],
+    //   response_one_wic: question_1_values["response_one_wic"]
+    //   //componentMap: this.props.navigation.state.params.componentMap
+    // };
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
@@ -309,6 +310,10 @@ class One extends React.Component {
                 "response_one_wic",
                 this.state.response_one_wic
               );
+              // var question_1_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_1')
+              // for (const [key, value] of (this.state.componentMap).entries()) {
+              //   question_1_ref.set({ [key]: value }, { merge: true });
+              // }
               this.props.navigation.navigate("QuestionTwo", {
                 componentMap: this.state.componentMap
               });
@@ -415,6 +420,10 @@ class Two extends React.Component {
                 );
               }
 
+              // var question_2_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_2')
+              // question_2_ref.set({ "response_two_yes": this.state.response_two_yes }, { merge: true });
+              // question_2_ref.set({ "response_two_no": this.state.response_two_no }, { merge: true });
+
               this.props.navigation.navigate("QuestionThree", {
                 componentMap: this.state.componentMap
               });
@@ -505,6 +514,10 @@ class Three extends React.Component {
                 "response_three_no",
                 this.state.response_three_no
               );
+              // var question_3_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_3')
+              // question_3_ref.set({ "response_three_yes": this.state.response_three_yes }, { merge: true });
+              // question_3_ref.set({ "response_three_no": this.state.response_three_no }, { merge: true });
+
               if (
                 this.state.componentMap.size != 1 &&
                 this.state.componentMap.get("response_three_no")
@@ -627,6 +640,12 @@ class Four extends React.Component {
                 "response_four_child",
                 this.state.response_four_child
               );
+              var question_4_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_4')
+              question_4_ref.set({ "response_four_work_study": this.state.response_four_work_study }, { merge: true });
+              question_4_ref.set({ "response_four_20_hours": this.state.response_four_20_hours }, { merge: true });
+              question_4_ref.set({ "response_four_vocational": this.state.response_four_vocational }, { merge: true });
+              question_4_ref.set({ "response_four_child": this.state.response_four_child }, { merge: true });
+
               if (
                 this.state.componentMap.size != 1 &&
                 !this.state.componentMap.get("response_four_work_study") &&
@@ -767,6 +786,12 @@ class Five extends React.Component {
                 this.state.response_five_off_campus_roommates
               );
 
+              var question_5_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_5')
+              question_5_ref.set({ "response_five_remain_home": this.state.response_five_remain_home }, { merge: true });
+              question_5_ref.set({ "response_five_on_campus": this.state.response_five_on_campus }, { merge: true });
+              question_5_ref.set({ "response_five_off_campus_own": this.state.response_five_off_campus_own }, { merge: true });
+              question_5_ref.set({ "response_five_off_campus_roommates": this.state.response_five_off_campus_roommates }, { merge: true });
+
               // TODO: Check that all these conditions work
               if (
                 this.state.componentMap.get("response_one_snap") &&
@@ -881,6 +906,9 @@ class Six extends React.Component {
                     break;
                 }
 
+                var question_6_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_6')
+                question_6_ref.set({ "response_six": this.state.response_six }, { merge: true });
+
                 this.state.componentMap.set(
                   "response_six",
                   this.state.response_six
@@ -975,6 +1003,11 @@ class Seven extends React.Component {
                 "response_seven_no",
                 this.state.response_seven_no
               );
+
+              var question_7_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_7')
+              question_7_ref.set({ "response_seven_yes": this.state.response_seven_yes }, { merge: true });
+              question_7_ref.set({ "response_seven_no": this.state.response_seven_no }, { merge: true });
+
               if (this.state.componentMap.get("response_seven_no")) {
                 this.props.navigation.navigate("QuestionEight", {
                   componentMap: this.state.componentMap
@@ -1067,6 +1100,11 @@ class Eight extends React.Component {
                 "response_eight_no",
                 this.state.response_eight_no
               );
+
+              var question_8_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_8')
+              question_8_ref.set({ "response_eight_yes": this.state.response_eight_yes }, { merge: true });
+              question_8_ref.set({ "response_eight_no": this.state.response_eight_no }, { merge: true });
+
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
               });
@@ -1104,7 +1142,7 @@ class Result extends React.Component {
           <TouchableOpacity
             style={styles.nextButtonContainerStyle}
             onPress={() => {
-              this.props.navigation.navigate("Help");
+              this.props.navigation.navigate("DashboardScreen");
             }}
           >
             <Text
@@ -1148,11 +1186,13 @@ const handleCustomTransition = ({ scenes }) => {
   return fromRight();
 };
 
-const AppSwitchNavigator = createStackNavigator(
-  {
-    Loading: { screen: LoadingScreen, navigationOptions: { header: null } },
-    Welcome: { screen: WelcomeScreen, navigationOptions: { header: null } },
-    Help: { screen: SplashScreen, navigationOptions: { header: null } },
+
+
+const AppSwitchNavigator = createStackNavigator({
+    HomeScreen: { screen: HomeScreen, navigationOptions: { header: null } },
+    LoadingScreen: { screen: LoadingScreen, navigationOptions: { header: null } },
+    LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
+    DashboardScreen: { screen: DashboardScreen, navigationOptions: { header: null } },
     QuestionOne: One,
     QuestionTwo: Two,
     QuestionThree: Three,
@@ -1161,13 +1201,39 @@ const AppSwitchNavigator = createStackNavigator(
     QuestionSix: Six,
     QuestionSeven: Seven,
     QuestionEight: Eight,
-    Results: { screen: Result, navigationOptions: { header: null } }
-  },
-  {
-    initialRouteName: "Loading",
-    headerMode: "float",
-    transitionConfig: nav => handleCustomTransition(nav)
-  }
+    Results: { screen: Result, navigationOptions: { header: null } }},
+    {
+      initialRouteName: "LoadingScreen",
+      headerMode: "float",
+      transitionConfig: nav => handleCustomTransition(nav)
+    }
 );
 
-const AppContainer = createAppContainer(AppSwitchNavigator);
+const AppAuthNavigator = createAppContainer(AppSwitchNavigator);
+
+
+// const AppSwitchNavigator = createStackNavigator(
+//   {
+    
+//     Loading: { screen: LoadingScreen, navigationOptions: { header: null } },
+//     Welcome: { screen: HomeScreen, navigationOptions: { header: null } },
+//     Help: { screen: SplashScreen, navigationOptions: { header: null } },
+//     QuestionOne: One,
+//     QuestionTwo: Two,
+//     QuestionThree: Three,
+//     QuestionFour: Four,
+//     QuestionFive: Five,
+//     QuestionSix: Six,
+//     QuestionSeven: Seven,
+//     QuestionEight: Eight,
+//     Results: { screen: Result, navigationOptions: { header: null } }
+//   },
+//   {
+//     initialRouteName: "Loading",
+//     headerMode: "float",
+//     transitionConfig: nav => handleCustomTransition(nav)
+//   }
+// );
+
+// const AppContainer = createAppContainer(AppSwitchNavigator);
+

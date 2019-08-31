@@ -31,7 +31,7 @@ class HomeScreen extends Component {
         >
           Stanford Center on Poverty and Inequality
         </Text>
-        <TextInput
+        {/* <TextInput
           style={styles.input}
           placeholder="email"
           editable={true}
@@ -45,7 +45,20 @@ class HomeScreen extends Component {
           maxLength={20}
           secureTextEntry={true}
           keyboardType="default"
-        />
+        /> */}
+        <TouchableOpacity
+          style={styles.signInButton}
+          onPress={() => {
+            this.props.navigation.navigate("LoadingScreen")
+          }}
+        >
+          <Image
+            style={{ width: 25, height: 25, marginRight: 25 }}
+            source={require("../assets/google.png")}
+          />
+          <Text style={{ color: "#333" }}>Sign in With Google</Text>
+        </TouchableOpacity>
+        
       </View>
     );
   }
