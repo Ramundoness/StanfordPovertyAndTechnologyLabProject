@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet, Button, ImageBackground, TouchableOpacity } from "react-native";
 import { styles } from "../stylesheets/app-styles";
 
-
-
 class DashboardScreen extends Component {
     render() {
         return (

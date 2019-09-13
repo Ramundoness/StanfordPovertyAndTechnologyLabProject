@@ -104,7 +104,24 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 10,
     shadowOpacity: 0.25
-  }
+  },
+  numericInput: {
+    borderWidth: 2,
+    borderRadius: 10,
+    width: 300,
+    borderColor: "#fff",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    justifyContent: "center",
+    textAlignVertical: "center",
+    textAlign: "center",
+    fontFamily: "montserrat",
+    fontSize: 18,
+    // marginHorizontal: 5000,
+    marginVertical: 5,
+    color: "#fff"
+  },
+  
 });
 
 export { styles };

@@ -8,6 +8,7 @@ import backgroundVideo from "./assets/final.mp4";
 import { styles } from "./stylesheets/app-styles";
 import { Dimensions } from "react-native";
 
+import GenInfoDisclosure from "./components/GenInfoDisclosure"
 import Question_1 from "./components/question_1";
 import Question_2 from "./components/question_2";
 import Question_3 from "./components/question_3";
@@ -41,7 +42,7 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-var firestoreDatabase = firebase.firestore();
+// var firestoreDatabase = firebase.firestore();
 
 class App extends React.Component {
   componentDidMount() {
@@ -53,107 +54,6 @@ class App extends React.Component {
   render() {
     //return <AppContainer />;
       return <AppAuthNavigator />;
-  }
-}
-
-class WelcomeScreen extends React.Component {
-  render() {
-    return (
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-        // style={styles.container}
-      >
-        <Video
-          source={backgroundVideo}
-          resizeMode="cover"
-          shouldPlay={true}
-          isLooping={true}
-          isMuted={true}
-          style={{ width: 600, height: 1000 }}
-        />
-        <View
-          style={{
-            position: "absolute",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          {/* <HomeScreen /> */}
-          <Text
-            style={{
-              color: "#ffffff",
-              fontSize: 32,
-              textAlign: "center",
-              marginTop: 80,
-              marginBottom: 75,
-              margin: 35,
-              backgroundColor: "transparent",
-              textShadowColor: "#000",
-              textShadowOffset: { width: -1, height: 1 },
-              textShadowRadius: 10
-            }}
-          >
-            Stanford Lab on Poverty and Technology
-          </Text>
-          <TouchableOpacity
-            style={styles.signInButton}
-            onPress={() => {
-              this.props.navigation.navigate("Help");
-            }}
-          >
-            <Image
-              style={{ width: 25, height: 25, marginRight: 25 }}
-              source={require("./assets/google.png")}
-            />
-            <Text style={{ color: "#333" }}>Sign in With Google</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-}
-
-class SplashScreen extends React.Component {
-  render() {
-    return (
-      <ImageBackground
-        style={styles.imageBackgroundStyle}
-        source={require("./assets/background_one.jpg")}
-      >
-        <View style={styles.filterBackgroundStyle}>
-          <Text
-            style={{
-              color: "white",
-              fontFamily: "montserrat",
-              fontSize: 18,
-              justifyContent: "center",
-              alignItems: "center",
-              marginHorizontal: 40,
-              textAlign: "center"
-            }}
-          >
-            This survey will help you figure out what benefits and aid you're
-            eligible for from the Federal Government!
-          </Text>
-          <TouchableOpacity
-            style={styles.nextButtonContainerStyle}
-            onPress={() => {
-              this.props.navigation.navigate("QuestionOne");
-            }}
-          >
-            <Text
-              style={{ color: "white", fontFamily: "montserrat", fontSize: 18 }}
-            >
-              Begin
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ImageBackground>
-    );
   }
 }
 
@@ -640,11 +540,11 @@ class Four extends React.Component {
                 "response_four_child",
                 this.state.response_four_child
               );
-              var question_4_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_4')
-              question_4_ref.set({ "response_four_work_study": this.state.response_four_work_study }, { merge: true });
-              question_4_ref.set({ "response_four_20_hours": this.state.response_four_20_hours }, { merge: true });
-              question_4_ref.set({ "response_four_vocational": this.state.response_four_vocational }, { merge: true });
-              question_4_ref.set({ "response_four_child": this.state.response_four_child }, { merge: true });
+              // var question_4_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_4')
+              // question_4_ref.set({ "response_four_work_study": this.state.response_four_work_study }, { merge: true });
+              // question_4_ref.set({ "response_four_20_hours": this.state.response_four_20_hours }, { merge: true });
+              // question_4_ref.set({ "response_four_vocational": this.state.response_four_vocational }, { merge: true });
+              // question_4_ref.set({ "response_four_child": this.state.response_four_child }, { merge: true });
 
               if (
                 this.state.componentMap.size != 1 &&
@@ -786,11 +686,11 @@ class Five extends React.Component {
                 this.state.response_five_off_campus_roommates
               );
 
-              var question_5_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_5')
-              question_5_ref.set({ "response_five_remain_home": this.state.response_five_remain_home }, { merge: true });
-              question_5_ref.set({ "response_five_on_campus": this.state.response_five_on_campus }, { merge: true });
-              question_5_ref.set({ "response_five_off_campus_own": this.state.response_five_off_campus_own }, { merge: true });
-              question_5_ref.set({ "response_five_off_campus_roommates": this.state.response_five_off_campus_roommates }, { merge: true });
+              // var question_5_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_5')
+              // question_5_ref.set({ "response_five_remain_home": this.state.response_five_remain_home }, { merge: true });
+              // question_5_ref.set({ "response_five_on_campus": this.state.response_five_on_campus }, { merge: true });
+              // question_5_ref.set({ "response_five_off_campus_own": this.state.response_five_off_campus_own }, { merge: true });
+              // question_5_ref.set({ "response_five_off_campus_roommates": this.state.response_five_off_campus_roommates }, { merge: true });
 
               // TODO: Check that all these conditions work
               if (
@@ -906,8 +806,8 @@ class Six extends React.Component {
                     break;
                 }
 
-                var question_6_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_6')
-                question_6_ref.set({ "response_six": this.state.response_six }, { merge: true });
+                // var question_6_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_6')
+                // question_6_ref.set({ "response_six": this.state.response_six }, { merge: true });
 
                 this.state.componentMap.set(
                   "response_six",
@@ -1004,9 +904,9 @@ class Seven extends React.Component {
                 this.state.response_seven_no
               );
 
-              var question_7_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_7')
-              question_7_ref.set({ "response_seven_yes": this.state.response_seven_yes }, { merge: true });
-              question_7_ref.set({ "response_seven_no": this.state.response_seven_no }, { merge: true });
+              // var question_7_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_7')
+              // question_7_ref.set({ "response_seven_yes": this.state.response_seven_yes }, { merge: true });
+              // question_7_ref.set({ "response_seven_no": this.state.response_seven_no }, { merge: true });
 
               if (this.state.componentMap.get("response_seven_no")) {
                 this.props.navigation.navigate("QuestionEight", {
@@ -1101,9 +1001,9 @@ class Eight extends React.Component {
                 this.state.response_eight_no
               );
 
-              var question_8_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_8')
-              question_8_ref.set({ "response_eight_yes": this.state.response_eight_yes }, { merge: true });
-              question_8_ref.set({ "response_eight_no": this.state.response_eight_no }, { merge: true });
+              // var question_8_ref = firestoreDatabase.collection('raymondyao28@gmail.com').doc('question_8')
+              // question_8_ref.set({ "response_eight_yes": this.state.response_eight_yes }, { merge: true });
+              // question_8_ref.set({ "response_eight_no": this.state.response_eight_no }, { merge: true });
 
               this.props.navigation.navigate("Results", {
                 componentMap: this.state.componentMap
@@ -1189,6 +1089,7 @@ const handleCustomTransition = ({ scenes }) => {
 
 
 const AppSwitchNavigator = createStackNavigator({
+    GenInfoDisclosure: { screen: GenInfoDisclosure, navigationOptions: { header: null } },
     HomeScreen: { screen: HomeScreen, navigationOptions: { header: null } },
     LoadingScreen: { screen: LoadingScreen, navigationOptions: { header: null } },
     LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
@@ -1203,7 +1104,7 @@ const AppSwitchNavigator = createStackNavigator({
     QuestionEight: Eight,
     Results: { screen: Result, navigationOptions: { header: null } }},
     {
-      initialRouteName: "LoadingScreen",
+      initialRouteName: "GenInfoDisclosure",
       headerMode: "float",
       transitionConfig: nav => handleCustomTransition(nav)
     }
